@@ -1,0 +1,43 @@
+:root {
+    --body-width: 1190px;
+
+    --font-small: 14px;
+    --font-medium: 18px;
+
+    --margin-text-small: 14px;
+}
+
+body{
+    padding:0px;
+    margin:0px;
+}
+.main-container{
+    width: var(--body-width);
+    margin-left:auto;
+    margin-right:auto;
+}
+.h-list>li{
+    display:inline;
+}
+.nav-item{
+    list-style-type:none;
+    margin-top:auto;
+    margin-bottom:auto;
+}
+.nav-item>*{    
+    padding-right: var(--margin-text-small);
+    font-size: var(--font-small);
+    cursor: pointer;
+}
+.float-left>*{
+    float:left;
+}
+.float-right>li{
+    float:right;
+}
+.show{
+    display:block;
+}
+.hide{
+    display:none;
+}
