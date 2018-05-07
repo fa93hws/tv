@@ -7,7 +7,7 @@
       :style="[this.isShown ? this.styles.menuOpenStyle : '']"
       :class="{ menuOpenStyle: isShown}"
     >
-      {{text}} &#9661;
+      <span>{{text}} &#9661; </span>
     </div>
     <div
       ref = 'dropDown'

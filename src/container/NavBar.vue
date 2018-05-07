@@ -8,6 +8,7 @@
       </ul>
 
       <ul class="nav-item float-right">
+        <li> <SiteNavDropDown /> </li>
         <li>
           <DropDown
             :text="'联系客服'"
@@ -56,14 +57,16 @@
 <script>
 import RegionSelector from "./RegionSelector.vue";
 import DropDown from "../components/DropDown.vue";
-import UserInfo from "../components/UserInfo.vue"
+import UserInfo from "../components/UserInfo.vue";
+import SiteNavDropDown from "./SiteNavDropDown.vue";
 
 export default {
   name: 'NavBar',
   components:{
     RegionSelector,
     UserInfo,
-    DropDown
+    DropDown,
+    SiteNavDropDown
   },
   data() {
     return{
