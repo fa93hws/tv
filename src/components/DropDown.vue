@@ -2,8 +2,8 @@
   <div>
     <div 
       class="open" ref = 'menuButton'
-      @mouseover="()=>{this.isShown=true;}"
-      @mouseleave="()=>{this.isShown=false}"
+      @mouseover="()=>{isShown=true;}"
+      @mouseleave="()=>{isShown=false}"
       :style="[this.isShown ? this.styles.menuOpenStyle : '']"
       :class="{ menuOpenStyle: isShown}"
     >
@@ -60,6 +60,9 @@ export default {
       menuOpenStyle: {},
       dropDownItemHover: {}
     }
+  },
+  updated: function () {
+    this.$emit('updated-handler');
   }
 }
 </script>
@@ -73,6 +76,8 @@ export default {
     margin-right: auto;
     margin-bottom: 0px;
     margin-left: auto;
+    background:white;
+    z-index:1;
     /* border-style: solid; */
     position: absolute;
 }

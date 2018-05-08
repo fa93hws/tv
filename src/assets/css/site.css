@@ -4,8 +4,16 @@
     --font-small: 12px;
     --font-medium: 14px;
     --font-large: 18px;
+    --font-xlarge: 22px;
 
-    --margin-text-small: 14px;
+    --margin-small: 14px;
+    --margin-medium: 20px;
+}
+.font-small{
+    font-size: var(--font-small);
+}
+.orangered-text{
+    color: orangered
 }
 li{
     list-style:none;
@@ -31,20 +39,25 @@ body{
 .h-list>li{
     display:inline;
 }
+
 .nav-item{
     list-style-type:none;
     margin-top:auto;
     margin-bottom:auto;
+    padding:0px;
 }
 .nav-item>*{    
-    padding-right: var(--margin-text-small);
+    padding-right: var(--margin-small);
     font-size: var(--font-small);
     cursor: pointer;
 }
-.float-left>*{
+.float-left{
     float:left;
 }
-.float-right>li{
+.float-left{
+    float:left;
+}
+.float-right{
     float:right;
 }
 /* .float-right>li:first-child ul{
@@ -56,4 +69,11 @@ body{
 }
 .hide{
     display:none;
+}
+.cursor-normal{
+    cursor: auto;
+}
+.fixed-top{
+    position: fixed;
+    top:0;
 }

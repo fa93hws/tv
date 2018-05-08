@@ -7,10 +7,10 @@
 
     <!-- not loged in-->
     <div class="nav-item float-left" v-else>
-      <div style="color:red;">
+      <div  class = 'float-left' style="color:red;">
         亲，请登录
       </div>
-      <div>
+      <div class = 'float-left'>
         免费注册
       </div>
     </div>

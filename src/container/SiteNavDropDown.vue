@@ -143,7 +143,6 @@
 export default {
   name: 'SiteNavDropDown',
   created: function() {
-    // console.log(this.isShown);
     this.isShown = false;
   },
   mounted: function(){
@@ -160,19 +159,16 @@ export default {
       isShown:false
     }
   },
-  watch:{
+  watch: {
     inMenu: {
-      // handler: this.updateDropDownStatus
       handler: function(after,before){
         this.updateDropDownStatus(after,before);
-        console.log(this);
       }
     },
     inDropDown: {
       // handler: this.updateDropDownStatus
       handler: function(after,before){
         this.updateDropDownStatus(after,before);
-        console.log(this);
       }
     }
   },
@@ -196,8 +192,10 @@ export default {
 #drop-down{
   position: absolute;
   width: var(--body-width);
+  z-index:1;
+  background:white;
 }
-#drop-down > *{
+#drop-down > div{
   display:inline-block;
 }
 .inner-container{
@@ -220,6 +218,7 @@ hr{
   border-style: solid;
   border-color: silver;
   vertical-align: top;
+  display:inline-block;
 }
 ul>li:not(:first-child){
   display:inline-block
@@ -229,6 +228,9 @@ ul>li:not(:first-child){
 }
 a{
   padding:5px;
+}
+li>a:hover{
+  color:white
 }
 #inner-ul-1>li>a:hover{
   background:red;

@@ -1,15 +1,15 @@
 <template>
-  <nav>
+  <div class = 'nav'>
     <div class="main-container">
-      <ul class="nav-item h-list float-left">
-        <li> <RegionSelector /> </li>
-        <li> <UserInfo /> </li>
-        <li v-if="!userAgent.isMobile"> 手机逛淘宝 </li>
+      <ul class="nav-item h-list">
+        <li class = 'float-left' > <RegionSelector /> </li>
+        <li class = 'float-left'> <UserInfo /> </li>
+        <li class = 'float-left' v-if="!userAgent.isMobile"> 手机逛淘宝 </li>
       </ul>
 
-      <ul class="nav-item float-right">
-        <li> <SiteNavDropDown /> </li>
-        <li>
+      <ul class="nav-item">
+        <li class = 'float-right'> <SiteNavDropDown /> </li>
+        <li class = 'float-right'>
           <DropDown
             :text="'联系客服'"
             :optionList="['消费者客服','卖家客服']"
@@ -17,7 +17,7 @@
             :styles="dropDownStyles"
           />
         </li>
-        <li>
+        <li class = 'float-right'>
           <DropDown
             :text="'卖家中心'"
             :optionList="['免费开店','已卖出的宝贝','出售中的宝贝','卖家服务市场','卖家培训中心','体检中心','问商友']"
@@ -25,7 +25,7 @@
             :styles="dropDownStyles"
           />
         </li>
-        <li>
+        <li class = 'float-right'>
           <DropDown
             :text="'收藏夹'"
             :optionList="['收藏的宝贝','收藏的店铺']"
@@ -33,7 +33,7 @@
             :styles="dropDownStyles"
           />
         </li>
-        <li>
+        <li class = 'float-right'>
           <DropDown
             :text="'购物车'"
             :optionList="['']"
@@ -41,7 +41,7 @@
             :styles="dropDownStyles"
           />
         </li>
-        <li>
+        <li class = 'float-right'>
           <DropDown
             :text="'我的淘宝'"
             :optionList="['已买到的宝贝','我的足迹']"
@@ -51,7 +51,7 @@
         </li>
       </ul>
     </div>
-  </nav>
+  </div>
 </template>
 
 <script>
@@ -100,7 +100,7 @@ export default {
 </script>
 
 <style scoped>
-  nav {
+  .nav {
     width: 100%;
     background: #f5f5f5;
     height:36px;
