@@ -39,7 +39,7 @@
           <span>x</span>
         </div>
         <div id = 'top-search-qr-container' class = 'float-left'>  
-          <span class = 'font-small'>手机淘宝</span></br>
+          <span class = 'font-small'>手机淘宝</span><br/>
           <img src="../assets/code.png" alt="Smiley face" height="62" width="62">
         </div>
       </div>
@@ -47,7 +47,7 @@
 
     <div 
       id = 'top-search-fixed-wrapper'
-      v-bind:class="{'fixed-top':true, 'hide':!isSearchBarVisible, 'show':isSearchBarVisible}">
+      v-bind:class="{'fixed-top':true, 'hide':isSearchBarVisible, 'show':!isSearchBarVisible}">
       <div class = 'mid-main'>
         <div class= 'float-left' style='width:150px;height:70px;'>
           <img src="../assets/logo.png" alt="Smiley face" height="40" width="100">
@@ -111,7 +111,7 @@ export default {
       let navHeight = document.getElementsByClassName('nav')[0].clientHeight;
       let marginBetween = 14;
 
-      this.isSearchBarVisible = scrollDistance > thisHeight + navHeight + marginBetween;
+      this.isSearchBarVisible = scrollDistance < thisHeight + navHeight + marginBetween;
       // console.log(this);
       // this.isSearchBarVisible = ((elemBottom <= docViewBottom) && (elemTop >= docViewTop));
     }
@@ -153,6 +153,9 @@ export default {
     text-align: left;
     margin-left: 18px;
     color: orangered
+  }
+  #top-search-bottom-wrapper{
+    margin-top:5px;
   }
   #top-search-label-wrapper > span {
     padding: 5px 5px 3px 5px;

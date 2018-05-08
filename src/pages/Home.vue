@@ -18,17 +18,19 @@
       </ul>
     </div>
     <div id = 'main-content-container'>
+      <LeftDrawer />
     </div>
   </div>
 </template>
 
 <script>
-import TopSearchBar from '../container/TopsearchBar.vue';
-
+import TopSearchBar from '../container/TopSearchBar.vue';
+import LeftDrawer from '../container/LeftDrawer.vue';
 export default {
   name: 'Home',
   components: {
     TopSearchBar,
+    LeftDrawer
   },
   data: function () {
     return{
@@ -56,13 +58,13 @@ export default {
 
 <style scoped>
 #main-content-th-wrapper{
-  height: 60px;
+  height: 40px;
   width: 100%;
-  background: linear-gradient(to top,  rgb(255, 145, 0) 0%,rgb(255, 145, 0) 50%,white 50%,white 100%);
+  background: linear-gradient(to top,  rgb(255, 145, 0) 0%,rgb(255, 145, 0) 75%,white 75%,white 100%);
   line-height: 30px;
 }
 #main-content-th{
-  height:60px;
+  height:40px;
   padding:0px;
   width: var(--body-width);
   margin-left: auto;
@@ -76,11 +78,15 @@ export default {
   flex-direction: column-reverse;
   line-height:30px;
 }
-.v-stack > div{
+.v-stack > div:first-child{
   height: 30px;
 }
+.v-stack > div:nth-child(2){
+  height: 10px;
+}
 .v-stack > div > span{
-  line-height: 40px;
+  line-height: 8px;
+  font-size: var(--font-small);
 }
 
 #main-content-th > li{
@@ -89,9 +95,9 @@ export default {
 }
 #main-content-th > li:first-child{
   vertical-align: top;
-  height: 60px;
-  background: linear-gradient(to top,  orangered 0%,orangered 50%,white 50%,white 100%);
-  width: 160px;
+  height: 40px;
+  background: linear-gradient(to top,  orangered 0%,orangered 75%,white 75%,white 100%);
+  width: 190px;
   text-align: center;
 }
 #main-content-th > li:not(:first-child){
@@ -104,6 +110,6 @@ export default {
   width: var(--body-width);
   margin-left: auto;
   margin-right: auto;
-  border-style: solid;
+  /* border-style: solid; */
 }
 </style>

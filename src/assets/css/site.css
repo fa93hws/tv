@@ -18,6 +18,9 @@
 li{
     list-style:none;
 }
+.solid-border{
+    border-style:solid;
+}
 .font-medium{
     font-size: var(--font-medium)
 }
