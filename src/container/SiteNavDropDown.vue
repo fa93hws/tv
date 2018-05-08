@@ -1,48 +1,140 @@
 <template>
-  <div>
-    <span>网站导航 &#9661;</span>
-    <div id="drop-down" ref="container">
-      <table id='outer-table'>
-        <tr>
-          <td ref='outterCell0'>
-            <table id='inner-table' border='1' ref='innerTable0'>
-              <!-- <tr> 
-                <td colspan='4' class='bold font-large' style='color:red'> 主题市场 </td>
-              </tr> -->
-              <tr >
-                <td>女装</td> <td>男装</td> <td>内衣</td> <td>鞋靴</td>
-              </tr>
-              <tr >
-                <td>女装</td> <td>男装</td> <td>内衣</td> <td>鞋靴</td>
-              </tr>
-              <tr >
-                <td>女装</td> <td>男装</td> <td>内衣</td> <td>鞋靴</td>
-              </tr>
-              <tr >
-                <td>女装</td> <td>男装</td> <td>内衣</td> <td>鞋靴</td>
-              </tr>
-              <tr >
-                <td>女装</td> <td>男装</td> <td>内衣</td> <td>鞋靴</td>
-              </tr>
-              <tr >
-                <td>女装</td> <td>男装</td> <td>内衣</td> <td>鞋靴</td>
-              </tr>
-              <tr >
-                <td>女装</td> <td>男装</td> <td>内衣</td> <td>鞋靴</td>
-              </tr>
-            </table>
-          </td>
-
-          <td ref='outterCell1'>
-          </td>
-
-          <td ref='outterCell2'>
-          </td>
-
-          <td ref='outterCell3'>
-          </td>
-        </tr>
-      </table>
+  <div
+    @mouseover="()=>{this.inMenu = true}"
+    @mouseleave="()=>{this.inMenu = false}"
+  >
+    <span
+      id = 'sit-nav-drop-down-menu'
+    >
+      网站导航 &#9661;
+    </span>
+    <div 
+      id="drop-down" ref="container"
+      @mouseover="()=>{this.inDropDown = true}"
+      @mouseleave="()=>{this.inDropDown = false}"
+      :class="{hide: !isShown, show: isShown}"
+    >
+      <div class='inner-container' ref='outterCell0'>
+        <ul id='inner-ul-1' ref='innerTable0'>
+          <li style="width:100%">
+            <span class='bold font-large' style='color:red;'>主题市场</span>
+          </li>
+          <li >
+            <a>女装</a>
+          </li>
+          <li >
+            <a>男装</a>
+          </li>
+          <li >
+            <a>内衣</a>
+          </li>
+          <li >
+            <a>鞋靴</a>
+          </li>
+          <li >
+            <a>女装</a>
+          </li>
+          <li >
+            <a>男装</a>
+          </li>
+          <li >
+            <a>内衣</a>
+          </li>
+          <li >
+            <a>鞋靴</a>
+          </li>
+          <li >
+            <a>女装</a>
+          </li>
+          <li >
+            <a>男装</a>
+          </li>
+          <li >
+            <a>内衣</a>
+          </li>
+          <li >
+            <a>鞋靴</a>
+          </li>         
+        </ul>
+      </div>
+      <hr ref="vLine0"/>
+      <div class='inner-container' ref='outterCell1'>
+        <ul id='inner-ul-2' ref='innerTable0'>
+          <li style="width:100%">
+            <span class='bold font-large' style='color:green;'>特色市场</span>
+          </li>
+          <li >
+            <a>iFashion</a>
+          </li>
+          <li >
+            <a>爱逛街</a>
+          </li>
+          <li >
+            <a>美妆秀</a>
+          </li>
+          <li >
+            <a>全球购</a>
+          </li>
+          <li >
+            <a>腔调</a>
+          </li>
+          <li >
+            <a>淘女郎</a>
+          </li>
+          <li >
+            <a>星店</a>
+          </li>
+          <li >
+            <a>极有家</a>
+          </li>
+          <li >
+            <a>特色中国</a>
+          </li>
+        </ul>
+      </div>
+      <hr ref="vLine1"/>
+      <div class='inner-container' ref='outterCell2'>
+        <ul id='inner-ul-3' ref='innerTable0'>
+          <li style="width:100%">
+            <span class='bold font-large' style='color:purple;'>阿里APP</span>
+          </li>
+          <li >
+            <a>iFashion</a>
+          </li>
+          <li >
+            <a>爱逛街</a>
+          </li>
+          <li >
+            <a>美妆秀</a>
+          </li>
+          <li >
+            <a>全球购</a>
+          </li>
+          <li >
+            <a>腔调</a>
+          </li>
+          <li >
+            <a>淘女郎</a>
+          </li>
+        </ul>        
+      </div>
+      <hr ref="vLine2"/>
+      <div class='inner-container' ref='outterCell3'>
+       <ul id='inner-ul-4' ref='innerTable0'>
+          <li style="width:100%">
+            <span class='bold font-large' style='color:blue;'>精彩推荐集</span>
+          </li>
+          <li >
+            <a>iFashion</a>
+          </li>
+          <li >
+            <a>爱逛街</a>
+          </li>
+          <li >
+            <a>美妆秀</a>
+          </li>
+        </ul>         
+      </div>
     </div>
   </div>
 </template>
@@ -50,80 +142,116 @@
 <script>
 export default {
   name: 'SiteNavDropDown',
+  created: function() {
+    // console.log(this.isShown);
+    this.isShown = false;
+  },
   mounted: function(){
     // adjust right aligned
     let bodyWidth = document.body.clientWidth;
     let mainWidth = document.getElementsByClassName('main-container')[0].clientWidth;
     this.$refs.container.style.right = (bodyWidth-mainWidth)/2 + "px";
-    // set width for individualWindow
-    let indvidualWindowWidth = mainWidth/4 + "px";
-    for (let i=0; i<4; i++){
-      this.$refs['outterCell'+i].style.width = indvidualWindowWidth;
-    }
+    // add hover style
   },
   data: function(){
     return {
+      inMenu: false,
+      inDropDown: false,
+      isShown:false
     }
+  },
+  watch:{
+    inMenu: {
+      // handler: this.updateDropDownStatus
+      handler: function(after,before){
+        this.updateDropDownStatus(after,before);
+        console.log(this);
+      }
+    },
+    inDropDown: {
+      // handler: this.updateDropDownStatus
+      handler: function(after,before){
+        this.updateDropDownStatus(after,before);
+        console.log(this);
+      }
+    }
+  },
+  methods: {
+    updateDropDownStatus: function (after, before) {
+      this.isShown = this.inMenu || this.inDropDown;
+    }
+  },
+  updated: function () {
+    // adjust v-line height
+    // console.log(this.$refs['vLine1'].parentElement.offsetHeight);
+    if (this.isShown)
+      for (let i=0;i<3;i++){
+        this.$refs['vLine'+i].style.height = this.$refs['outterCell'+i].offsetHeight + 'px';
+      }
   }
 }
 </script>
 
 <style scoped>
 #drop-down{
-    -webkit-padding-start: 0px;
-    -webkit-margin-before: 0px;
-    -webkit-margin-after: 0px;
-    margin-top: 0px;
-    margin-right: auto;
-    margin-bottom: 0px;
-    margin-left: auto;
-    position: absolute;
-    width: var(--body-width);
-    /* right:50px;  */
-    /* to be determined in js */
-    left:auto;
-    padding:0px;
-
-
-    
-    /* border-style:solid; */
-    /* height:20px; */
+  position: absolute;
+  width: var(--body-width);
 }
 #drop-down > *{
-  border-style:solid;
   display:inline-block;
-  padding:0 0 0 0;
-  margin:0 0 0 0;
 }
-hr{
-  border-style:solid;
-  width:0px;
-
+.inner-container{
+  width:24%;
+  vertical-align:top;
 }
-#outer-table{
-
-  /* border-style:solid; */
+ul{
+  width:100%;
+  padding-left:var(--margin-text-small);
+  word-wrap: break-word;
 }
-#outer-table>tr>td:not(:last-child){
-  border-color:silver;
-  border-right:1px solid;
-}
-#inner-table{
-  border-collapse: collapse;
-  width:100%
-}
-/* #inner-table >tr{
-  height:2px
-}
-#inner-table >tr >td{
-  height:10px;
-} */
-td, tr{
+li{
+  /* display:inline-block; */
   padding:0px;
   margin:0px;
-  overflow:hidden;
+  vertical-align: middle;
 }
-tr{
-  height:20px
+hr{
+  width: 0px;
+  border-style: solid;
+  border-color: silver;
+  vertical-align: top;
+}
+ul>li:not(:first-child){
+  display:inline-block
+}
+#inner-ul-1>li{
+  width:24%
+}
+a{
+  padding:5px;
+}
+#inner-ul-1>li>a:hover{
+  background:red;
+}
+#inner-ul-2>li{
+  width:32%
+}
+#inner-ul-2>li>a:hover{
+  background:green;
+}
+#inner-ul-3>li{
+  width:32%
+}
+#inner-ul-3>li>a:hover{
+  background:purple;
+}
+#inner-ul-4>li{
+  width:48%
+}
+#inner-ul-4>li>a:hover{
+  background:blue;
+}
+#sit-nav-drop-down-menu:hover{
+  background: white
 }
 </style>

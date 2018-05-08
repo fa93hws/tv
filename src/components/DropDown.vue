@@ -11,7 +11,7 @@
     </div>
     <div
       ref = 'dropDown'
-      id="drop-down" :class="{hide: !isShown, show: isShown}"
+      id="drop-down-c" :class="{hide: !isShown, show: isShown}"
       :style="this.styles.dropDown"
       @mouseover="()=>{this.isShown=true;}"
       @mouseleave="()=>{this.isShown=false}"
@@ -65,7 +65,7 @@ export default {
 </script>
 
 <style scoped>
-#drop-down{
+#drop-down-c{
     -webkit-padding-start: 0px;
     -webkit-margin-before: 0px;
     -webkit-margin-after: 0px;
