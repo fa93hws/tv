@@ -34,7 +34,12 @@ export default {
         },
         dropDown: {
           'max-height': '300px',
-          width:'auto'
+          'border-style': 'solid',
+          'border-color': '#f5f5f5',
+          'border-width': "1px",
+          'border-top' : 'none',
+          'padding-left' : '5px',
+          'padding-right': '5px'
         },
         dropDownItemHover:{
           hover_bg: '#f5f5f5'

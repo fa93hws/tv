@@ -11,6 +11,7 @@
         :optionList="['天猫','店铺']"
         :defaultVal="0"
         :styles="dropDownStyles"
+        :dropDownItemStyle="{'text-align':'center'}"
       />
     </div>
     <div class = 'text-wrapper float-left' >

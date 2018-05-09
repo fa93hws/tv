@@ -18,9 +18,10 @@
     >
       <ul @mouseleave="changeBackgroundOnHover(-1)">
         <li
-          v-for="(option, index) in optionList" :key=option.index
+          v-for="(option, index) in optionList" :key=index
           ref = 'dropDownList'
-          @mouseover="changeBackgroundOnHover(index)"   
+          :v-bind:style="dropDownItemStyle"
+          @mouseover="changeBackgroundOnHover(index)"
         >
           {{option}}
         </li>
@@ -42,14 +43,27 @@ export default {
       }
     }//changeBackgroundOnHover
   },
-  props:{
-    text:String,
-    defaultVal:Number,
-    optionList:Array,
+  props: {
+    text: {
+      type: String,
+      required: true
+    },
+    defaultVal: {
+      type: Number,
+      required: true
+    },
+    optionList: {
+      type: Array,
+      required: true
+    },
     styles: {
       menuOpenStyle:Object,
       dropDown: Object,
-      dropDownItemHover: Object
+      dropDownItemHover: Object,
+    },
+    dropDownItemStyle: {
+      type: Object,
+      default: function () {return {};}
     }
   },
   data() {
@@ -84,9 +98,6 @@ export default {
 ul{
   list-style-type:none;
   padding-left:0px;
-}
-ul>li{
-  text-align:left;  
 }
 </style>
 

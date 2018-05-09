@@ -4,7 +4,7 @@
     <div id = 'main-content-th-wrapper'>
       <ul id = 'main-content-th'>        
         <li 
-          v-for="(text,index) in headTexts" v-bind:key=text.index
+          v-for="(text,index) in headTexts" v-bind:key=index
           @mouseover="()=>{thHoverIdx = index-1}"
           @mouseleave="()=>{thHoverIdx = -1}"
         >
@@ -19,6 +19,10 @@
     </div>
     <div id = 'main-content-container'>
       <LeftDrawer />
+      <ImgCarousel
+        :imgurls="upperImgCarousel.url"
+        :container="upperImgCarousel.style"
+      />
     </div>
   </div>
 </template>
@@ -26,16 +30,41 @@
 <script>
 import TopSearchBar from '../container/TopSearchBar.vue';
 import LeftDrawer from '../container/LeftDrawer.vue';
+import ImgCarousel from '../components/ImgCarousel.vue';
+
 export default {
   name: 'Home',
   components: {
     TopSearchBar,
-    LeftDrawer
+    LeftDrawer,
+    ImgCarousel
   },
   data: function () {
     return{
       headTexts: ["主题市场","天猫","聚划算","|","淘抢购","电器城","司法拍卖","中国制造","兴农扶贫","|","飞猪旅行","智能生活","苏宁易购"],
-      thHoverIdx: -1
+      thHoverIdx: -1,
+      upperImgCarousel: {
+        style:{
+          width: 520,
+          height: 280,
+          className: 'upper-carousel-container',
+        },
+        // style: {
+        //   width: '520px',
+        //   height: '280px',
+        //   'border-style': 'solid',
+        //   'border-width': '1px',
+        //   display: 'inline-block',
+        //   'vertical-align': 'top',
+        //   'margin-left': 'var(--margin-medium)',
+        //   'margin-top': 'var(--margin-medium)'
+        // },
+        url: [
+          require('../assets/upper0.jpg'),
+          require('../assets/upper1.jpg'),
+          require('../assets/upper2.jpg')
+        ]
+      },
     }
   },
   watch: {
@@ -59,8 +88,10 @@ export default {
 <style scoped>
 #main-content-th-wrapper{
   height: 40px;
+  margin-top:30px;
   width: 100%;
   background: linear-gradient(to top,  rgb(255, 145, 0) 0%,rgb(255, 145, 0) 75%,white 75%,white 100%);
+  /* background: orangered; */
   line-height: 30px;
 }
 #main-content-th{
@@ -97,6 +128,7 @@ export default {
   vertical-align: top;
   height: 40px;
   background: linear-gradient(to top,  orangered 0%,orangered 75%,white 75%,white 100%);
+  /* background: orangered; */
   width: 190px;
   text-align: center;
 }
@@ -111,5 +143,9 @@ export default {
   margin-left: auto;
   margin-right: auto;
   /* border-style: solid; */
+}
+#main-content-container > div {
+  display: inline-block;
+  vertical-align: top;
 }
 </style>

@@ -2,7 +2,7 @@
   <div id='left-drawer-main-content'>
     <p> {{title}} </p>
     <ul>
-      <li v-for="text in texts" v-bind:key=text.index
+      <li v-for="(text,index) in texts" v-bind:key=index
       >
         {{text}}
       </li>

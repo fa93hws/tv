@@ -3,12 +3,12 @@
     <div id = 'left-drawer-menu-container' class = 'solid-border'>
       <ul id = 'left-drawer-menu-ul'>
         <li
-          v-for="(items, idxs) in menu" v-bind:key=items.index
+          v-for="(items, idxs) in menu" v-bind:key=idxs
           @mouseover="mouseEnterMenu(idxs)"
           @mouseleave="mouseLeaveMenu(idxs)"
         >
           <div
-            v-for="(item, idx) in items" v-bind:key=item.index
+            v-for="(item, idx) in items" v-bind:key=idx
             style="display:inline-block;"
           >
             <span style='cursor:pointer'> {{item}} </span>
@@ -24,7 +24,7 @@
     >
       <div id = 'left-drawer-main-content-wrapper'>
         <LeftDrawTextContent
-          v-for="content in textContent" v-bind:key=content.index
+          v-for="(content,index) in textContent" v-bind:key=index
           :title = content.title
           :texts = content.texts
         />
@@ -155,6 +155,7 @@ li{
 /* wrapper */
 #left-drawer-container {
   height: 522px;
+  position: relative;
 }
 /* menu */
 #left-drawer-menu-container {
@@ -177,14 +178,18 @@ li{
 }
 /* content */
 #left-drawer-content-container{
-  /* display: inline-block; */
   vertical-align: top;
-  height: 100%;
+  height: 522px;
   width: 800px;
   margin-top: -2px;
   margin-left:-5px;
   border-color: orangered;
   border-width: 2px;
+  background: white;
+  position: absolute;
+  left: 194px;
+  top: 0px;
+  z-index: 2;
 }
 #left-drawer-main-content-wrapper {
   display: inline-block;
@@ -199,6 +204,7 @@ li{
   border-width: 1px;
 }
 #left-drawer-main-content-wrapper > div{
+  /* display: inline-block; */
   /* border-style:solid; */
   width: 100%;
   height: 30%;

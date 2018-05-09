@@ -11,7 +11,7 @@
       <div id = 'top-search-wrapper' class = 'float-left margin-search-box-left'>
         <div id = 'top-search-label-wrapper' >
           <span 
-            v-for="(item,index) in searchTabText" :key=item.index
+            v-for="(item,index) in searchTabText" :key=index
             ref=searchTab
             @mousedown="activeSearchTab(index)"
             class = 'font-medium'
