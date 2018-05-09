@@ -21,7 +21,7 @@
     >
       <span>&#10094;</span>
     </div>
-    <div ref='dir' id = 'directory' class = 'button button-bg'>
+    <div v-if="realOptions.jumpToolTip" ref='dir' id = 'directory' class = 'button button-bg'>
       <div class='circle' v-bind:class="{'highlight':getIdx(activeIdx) == index }"
         v-for="(url,index) in imgurls" :key="index"
         @mousedown="()=>{ jumpTo(activeIdx,index);}"
@@ -34,11 +34,6 @@
 <script>
 export default {
   name: 'ImgRollover',
-  created: function () {
-    this.images = this.imgurls.slice();
-    this.images.unshift(this.images[this.images.length-1]);
-    this.images.push(this.images[1]);
-  },
   mounted: function () {
     this.$refs.carousel.style.transform = 'translateX(-' + this.container.width + 'px' + ')';
     this.$refs.carousel.style.width = this.container.width * (this.imgurls.length + 2) + 'px';
@@ -57,11 +52,27 @@ export default {
     container: {
       type: Object,
       default: function () {return {};}
+    },
+    options: {
+      type: Object,
+      default: function () {return {};}
+    }
+  },
+  computed: {
+    realOptions: function () {
+      return {
+        jumpToolTip: (typeof this.options.junpToolTip === 'undefined') ? true : this.options.junpToolTip,
+      }
+    },
+    images: function() {
+      var images = this.imgurls.slice()
+      images.unshift(this.imgurls[this.imgurls.length-1]);
+      images.push(this.imgurls[0]);
+      return images;
     }
   },
   data: function () {
     return {
-      images: [],
       activeIdx: 0,
       inTransition: false
     }
