@@ -1,6 +1,8 @@
 :root {
     --body-width: 1190px;
 
+    --font-xxsmall: 8px;
+    --font-xsmall: 10px;
     --font-small: 12px;
     --font-medium: 14px;
     --font-large: 18px;
@@ -84,6 +86,7 @@ body{
 .fixed-top{
     position: fixed;
     top:0;
+    z-index: 3;
 }
 /* left drawer */
 .text-content-wrapper {
@@ -93,12 +96,16 @@ body{
 
 /* carousel */
 .upper-carousel-container{
-    width: 520px;
+    width: 500px;
     height: 280px;
     /* border-style: solid; */
     border-width: 1px;
-    display: inline-block;
+    /* display: inline-block; */
     vertical-align: top;
     margin-left: var(--margin-medium);
-    margin-top: var(--margin-medium);
+    margin-top: var(--margin-small);
+}
+.lower-carousel-container {
+    margin-top:0px;
+    padding-top: 0px;
 }

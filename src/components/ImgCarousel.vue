@@ -8,7 +8,7 @@
         v-for="(url,idx) in images" :key="idx"
         class='slide'
         >
-        <img v-bind:src="url"/>
+        <img v-bind:src="url" v-bind:width="container.width" v-bind:height="container.height"/>
       </li>
     </ul>
     <div ref='nextButton' id = 'next-button' class = 'button button-bg'
@@ -40,7 +40,8 @@ export default {
     this.$refs.nextButton.style.left = this.container.width - this.$refs.nextButton.clientWidth + 'px';
 
     this.$nextTick( ()=>{
-      this.$refs.dir.style.left = this.container.width/2 - this.$refs.dir.offsetWidth/2 + 'px';
+      if (this.realOptions.jumpToolTip)
+        this.$refs.dir.style.left = this.container.width/2 - this.$refs.dir.offsetWidth/2 + 'px';
       this.$refs.carousel.classList.add('animated'); // add class later to prevent inital animation
     })
   },
