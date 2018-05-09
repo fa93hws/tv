@@ -6,6 +6,8 @@
     --font-large: 18px;
     --font-xlarge: 22px;
 
+    --margin-xxsmall: 5px;
+    --margin-xsmall: 10px;
     --margin-small: 14px;
     --margin-medium: 20px;
 }
@@ -79,4 +81,9 @@ body{
 .fixed-top{
     position: fixed;
     top:0;
+}
+/* left drawer */
+.text-content-wrapper {
+    border-style: solid;
+    height:100%;
 }
