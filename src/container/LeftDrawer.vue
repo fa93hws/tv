@@ -159,13 +159,14 @@ li{
 }
 /* menu */
 #left-drawer-menu-container {
-  width: 188px;
+  width: 190px;
   height: 100%;
   display: inline-block;
   vertical-align: top;
   border-top:none;
   border-color: orangered;
   border-width: 1px;
+  background: white;
 }
 #left-drawer-menu-ul > li {
   line-height: 40px;  

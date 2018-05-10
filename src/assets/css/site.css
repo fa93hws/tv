@@ -8,6 +8,7 @@
     --font-large: 18px;
     --font-xlarge: 22px;
 
+    --margin-xxxsmall: 2px;
     --margin-xxsmall: 5px;
     --margin-xsmall: 10px;
     --margin-small: 14px;
@@ -40,6 +41,7 @@ li{
 body{
     padding:0px;
     margin:0px;
+    background:rgb(240, 240, 240);
 }
 .main-container{
     width: var(--body-width);
@@ -64,6 +66,9 @@ body{
 }
 .hide{
     display:none;
+}
+.h-list > li {
+    display: inline-block;
 }
 .cursor-normal{
     cursor: auto;
@@ -104,6 +109,10 @@ body{
               user-select: none; /* Non-prefixed version, currently
                                     supported by Chrome and Opera */
   }
-  .clickable {
-      cursor: pointer;
-  }
+.clickable {
+    cursor: pointer;
+}
+input[type="text"] {
+    background: transparent;
+    border: none;
+}

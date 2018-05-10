@@ -11,8 +11,8 @@
       <span class = 'float-right'>
         {{lowerImgIdx+1}}/{{lowerImgCarousel.url.length}}
       </span>
-      <ul>
-        <li 
+      <ul class='no-padding no-margin'>
+        <li
           ref="lowerCarouselJumpControllerPiece"
           v-for="(url,idx) in lowerImgCarousel.url" v-bind:key="idx"
           v-bind:class="{'selected':lowerImgIdx===idx}"
@@ -98,13 +98,13 @@ export default {
   height: 250px;
   border-width: 1px;
   vertical-align: top;
-  margin-left: var(--margin-medium);
+  margin-left: var(--margin-small);
   margin-top: var(--margin-small);
 }
 /*carousel*/
 #lower-img-carousel {
-  margin-left: var(--margin-medium);
-  margin-top: var(--margin-medium);
+  margin-left: var(--margin-small);
+  margin-top: var(--margin-small);
   width: 500px;
   height: 200px;
 }
@@ -114,15 +114,14 @@ export default {
   font-size: var(--font-small);
 }
 ul {
-  margin: 0px 0px 0px 0px;
-  padding: 0px 0px 0px 0px;
   font-size: 0px;
+  height: 10px;
 }
 li {
   display: inline-block;
   background: orangered;
-  height: 10px;
   cursor: pointer;
+  height: 10px;
 }
 li.selected{
   background: black;

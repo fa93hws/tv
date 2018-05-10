@@ -41,12 +41,13 @@ export default {
         menuOpenStyle:{
           background:'rgb(224, 224, 224)',
           'border-top-left-radius':    '20px',
-          'border-bottom-left-radius': '20px'
+          'border-bottom-left-radius': '20px',
         },        
         dropDown: {
           'max-height': '300px',
           width:'80px',
-          background: 'rgb(224, 224, 224)'
+          background: 'rgb(224, 224, 224)',
+          'margin-top': '-4px'
         },
         dropDownItemHover:{
           hover_bg: '#f5f5f5'
@@ -79,6 +80,7 @@ export default {
   #search-box > .button-wrapper {
     padding:0px;
     margin-right:-2px;
+    margin-top: -2px;
     color: white;
     background: orangered;
     font-size: var(--font-xlarge);
@@ -88,17 +90,18 @@ export default {
     text-align: center;
   }
   #search-box > .text-wrapper{
+    margin-top: -2px;
     margin-left: 8px;
   }
   #left-dropdown-wrapper > div {
     background: rgb(224, 224, 224);
-    border-top-left-radius:    20px;
-    
+    border-top-left-radius:    18px;
     width: 80px;
     text-align: center;
+    height: 36px;
   }
   .quater-radius > div {
-    border-bottom-left-radius: 20px;
+    border-bottom-left-radius: 18px;
   }
   .text-wrapper > input{
     border-style: none;

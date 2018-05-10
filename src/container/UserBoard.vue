@@ -27,8 +27,13 @@ export default {
 </script>
 
 <style scoped>
+#right-col-user-board {
+  background: white;
+  width: 100%;
+  height: 150px;
+}
 #right-col-user-board-avatar-container {
-  margin-top: 8px;
+  padding-top: 8px;
 }
 ul#right-col-user-board-tool-bars {
   width: 80%;

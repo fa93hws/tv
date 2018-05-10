@@ -23,6 +23,7 @@
       <div id = 'main-right-column'>
         <UserBoard />
         <InformationTab />
+        <RightGrids />
       </div>
     </div>
   </div>
@@ -34,6 +35,7 @@ import LeftDrawer from '../container/LeftDrawer.vue';
 import CenterImageCarousels from '../container/CenterImageCarousels.vue';
 import UserBoard from '../container/UserBoard.vue';
 import InformationTab from '../container/InformationTab.vue';
+import RightGrids from '../container/RightGrids/index.vue';
 
 export default {
   name: 'Home',
@@ -42,7 +44,8 @@ export default {
     LeftDrawer,
     CenterImageCarousels,
     UserBoard,
-    InformationTab
+    InformationTab,
+    RightGrids
   },
   data: function () {
     return{
@@ -69,9 +72,9 @@ export default {
 <style scoped>
 #main-content-th-wrapper{
   height: 40px;
-  margin-top:30px;
+  margin-top:20px;
   width: 100%;
-  background: linear-gradient(to top,  rgb(255, 145, 0) 0%,rgb(255, 145, 0) 75%,white 75%,white 100%);
+  background: linear-gradient(to top,  rgb(255, 145, 0) 0%,rgb(255, 145, 0) 75%,rgb(240, 240, 240) 75%,rgb(240, 240, 240) 100%);
   /* background: orangered; */
   line-height: 30px;
 }
@@ -108,7 +111,7 @@ export default {
 #main-content-th > li:first-child{
   vertical-align: top;
   height: 40px;
-  background: linear-gradient(to top,  orangered 0%,orangered 75%,white 75%,white 100%);
+  background: linear-gradient(to top,  orangered 0%,orangered 75%,rgb(240, 240, 240) 75%,rgb(240, 240, 240) 100%);
   /* background: orangered; */
   width: 190px;
   text-align: center;
@@ -129,10 +132,9 @@ export default {
   vertical-align: top;
 }
 #main-right-column {
-  margin-top: var(--margin-medium);
+  margin-top: var(--margin-xsmall);
   margin-left: var(--margin-medium);
 
   width: 290px;
-  height: 145px;
 }
 </style>

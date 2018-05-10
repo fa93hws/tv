@@ -2,13 +2,16 @@
   <div
     v-bind:class="[container.className, 'carousel-view']"
     ref="frame"
+    v-bind:style="{height:container.height + 'px'}"
   >
     <ul class='carousel clearfix' ref="carousel" >
       <li
         v-for="(url,idx) in images" :key="idx"
         class='slide'
         >
-        <img v-bind:src="url" v-bind:width="container.width" v-bind:height="container.height"/>
+        <img v-bind:src="url" 
+          v-bind:style="{width:container.width+'px',height:container.height+'px'}"
+        />
       </li>
     </ul>
     <div ref='nextButton' id = 'next-button' class = 'button button-bg'

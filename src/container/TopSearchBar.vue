@@ -147,6 +147,7 @@ export default {
     margin-bottom: auto;
   }
   .margin-search-box-left{
+    margin-top:4px;
     margin-left: 100px;
   }
   #top-search-label-wrapper, #top-search-bottom-wrapper{
@@ -158,7 +159,7 @@ export default {
     margin-top:5px;
   }
   #top-search-label-wrapper > span {
-    padding: 5px 5px 3px 5px;
+    padding: 5px 5px 1px 5px;
     cursor: pointer;
   }
   #top-search-label-wrapper > span:not(.selected):hover{

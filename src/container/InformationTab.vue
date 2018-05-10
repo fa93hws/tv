@@ -75,7 +75,6 @@ export default {
 <style scoped>
 #right-col-information-tab {
   width: 290px;
-  height: 150px;
   border-width: 1px;
 }
 #right-col-information-tab-report {
@@ -88,10 +87,15 @@ export default {
   color: orangered;
   text-align: center;
 }
+#right-col-tab-view {
+  background: white;
+}
 #right-col-tab-view-container >>> .tab-view-control-tab {
   width: 100%;
   margin-top: var(--margin-xxsmall);
   font-size: var(--font-medium);
+  margin-bottom: 0px;
+  padding-bottom: 0px;
 }
 #right-col-tab-view-container >>> .tab-view-control-tab > li {
   width: 18%;
