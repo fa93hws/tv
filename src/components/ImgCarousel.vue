@@ -119,7 +119,16 @@ export default {
     }
   },
   watch: {
-  }
+    activeIdx: {
+      handler: function (after, before){
+        // console.log('child changed');
+        this.$emit('idxChanged', this.getIdx(after) ,this.getIdx(before));
+      }
+    }
+  },
+  // updated: function () {
+  //   this.$emit('updated-handler');
+  // }
 }
 </script>
 

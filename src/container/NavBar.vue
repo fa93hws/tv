@@ -3,7 +3,7 @@
     <div class="main-container">
       <ul class="nav-item h-list">
         <li class = 'float-left' > <RegionSelector /> </li>
-        <li class = 'float-left'> <UserInfo /> </li>
+        <li class = 'float-left'> <NavBarLoginControl /> </li>
         <li class = 'float-left' v-if="!userAgent.isMobile"> 手机逛淘宝 </li>
       </ul>
 
@@ -57,14 +57,14 @@
 <script>
 import RegionSelector from "./RegionSelector.vue";
 import DropDown from "../components/DropDown.vue";
-import UserInfo from "../components/UserInfo.vue";
+import NavBarLoginControl from "./NavBarLoginControl.vue";
 import SiteNavDropDown from "./SiteNavDropDown.vue";
 
 export default {
   name: 'NavBar',
   components:{
     RegionSelector,
-    UserInfo,
+    NavBarLoginControl,
     DropDown,
     SiteNavDropDown
   },
@@ -110,6 +110,17 @@ export default {
     background: #f5f5f5;
     height:36px;
     line-height: 36px;
+  }
+  .nav-item {
+    list-style-type:none;
+    margin-top:auto;
+    margin-bottom:auto;
+    padding:0px;
+  }
+  .nav-item > div, .nav-item > li {    
+    margin-right: var(--margin-small);
+    font-size: var(--font-small);
+    cursor: pointer;
   }
 </style>
 

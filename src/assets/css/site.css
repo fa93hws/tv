@@ -46,21 +46,6 @@ body{
     margin-left:auto;
     margin-right:auto;
 }
-.h-list>li{
-    display:inline;
-}
-
-.nav-item{
-    list-style-type:none;
-    margin-top:auto;
-    margin-bottom:auto;
-    padding:0px;
-}
-.nav-item>*{    
-    padding-right: var(--margin-small);
-    font-size: var(--font-small);
-    cursor: pointer;
-}
 .float-left{
     float:left;
 }
@@ -88,24 +73,37 @@ body{
     top:0;
     z-index: 3;
 }
-/* left drawer */
-.text-content-wrapper {
-    border-style: solid;
-    height:100%;
+.mlra {
+    /* margin left right auto */
+    margin-left: auto;
+    margin-right: auto;
 }
+.avatar-small {
+    height: 36px;
+    width: 36px;
+}
+.avatar-medium {
+    height: 72px;
+    width: 72px;
+}
+.no-margin {
+    /* no margin */
+    margin: 0px 0px 0px 0px;
 
-/* carousel */
-.upper-carousel-container{
-    width: 500px;
-    height: 280px;
-    /* border-style: solid; */
-    border-width: 1px;
-    /* display: inline-block; */
-    vertical-align: top;
-    margin-left: var(--margin-medium);
-    margin-top: var(--margin-small);
 }
-.lower-carousel-container {
-    margin-top:0px;
-    padding-top: 0px;
+.no-padding {
+    /* no padding  */
+    padding: 0px 0px 0px 0px;
 }
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Safari */
+       -khtml-user-select: none; /* Konqueror HTML */
+         -moz-user-select: none; /* Firefox */
+          -ms-user-select: none; /* Internet Explorer/Edge */
+              user-select: none; /* Non-prefixed version, currently
+                                    supported by Chrome and Opera */
+  }
+  .clickable {
+      cursor: pointer;
+  }

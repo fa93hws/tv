@@ -19,26 +19,10 @@
     </div>
     <div id = 'main-content-container'>
       <LeftDrawer />
-      <div>
-        <ImgCarousel
-          :imgurls="upperImgCarousel.url"
-          :container="upperImgCarousel.style"
-        />
-        <div id = 'lower-img-carousel'>
-          <span>猫Logo</span>
-          <span>天猫Logo</span>
-          <span>理想生活上天猫</span>
-          <span class = 'float-right'>/{{lowerImgCarousel.url.length}}</span>
-          <ul>
-            <li ref="lowerCarouselJumpControllerPiece" v-for="(url,idx) in lowerImgCarousel.url" v-bind:key="idx">
-            </li>
-          </ul>
-          <ImgCarousel
-            :imgurls="lowerImgCarousel.url"
-            :container="lowerImgCarousel.style"
-            :options="lowerImgCarousel.options"
-          />
-        </div>
+      <CenterImageCarousels />
+      <div id = 'main-right-column'>
+        <UserBoard />
+        <InformationTab />
       </div>
     </div>
   </div>
@@ -47,55 +31,23 @@
 <script>
 import TopSearchBar from '../container/TopSearchBar.vue';
 import LeftDrawer from '../container/LeftDrawer.vue';
-import ImgCarousel from '../components/ImgCarousel.vue';
+import CenterImageCarousels from '../container/CenterImageCarousels.vue';
+import UserBoard from '../container/UserBoard.vue';
+import InformationTab from '../container/InformationTab.vue';
 
 export default {
   name: 'Home',
   components: {
     TopSearchBar,
     LeftDrawer,
-    ImgCarousel
-  },
-  mounted: function () {
-    this.$nextTick( ()=>{
-      // set width for lowerCarouselJumpController
-      let spans = this.$refs.lowerCarouselJumpControllerPiece;
-      for (let i=0; i < spans.length; i++){
-        spans[i].style.width = 100/spans.length + '%';
-      }
-    })
+    CenterImageCarousels,
+    UserBoard,
+    InformationTab
   },
   data: function () {
     return{
       headTexts: ["主题市场","天猫","聚划算","|","淘抢购","电器城","司法拍卖","中国制造","兴农扶贫","|","飞猪旅行","智能生活","苏宁易购"],
-      thHoverIdx: -1,
-      upperImgCarousel: {
-        style:{
-          width: 500,
-          height: 250,
-          className: 'upper-carousel-container',
-        },
-        url: [
-          require('../assets/upper0.jpg'),
-          require('../assets/upper1.jpg'),
-          require('../assets/upper2.jpg')
-        ]
-      },
-      lowerImgCarousel: {
-        style:{
-          width: 500,
-          height: 200,
-          className: 'lower-carousel-container',
-        },
-        url: [
-          require('../assets/upper0.jpg'),
-          require('../assets/upper1.jpg'),
-          require('../assets/upper2.jpg')
-        ],
-        options:{
-          junpToolTip: false,
-        }
-      },
+      thHoverIdx: -1
     }
   },
   watch: {
@@ -111,8 +63,6 @@ export default {
       }
     }
   },
-  methods:{
-  }
 }
 </script>
 
@@ -173,32 +123,16 @@ export default {
   width: var(--body-width);
   margin-left: auto;
   margin-right: auto;
-  /* border-style: solid; */
 }
 #main-content-container > div {
   display: inline-block;
   vertical-align: top;
 }
-/*carousel*/
-#lower-img-carousel {
+#main-right-column {
+  margin-top: var(--margin-medium);
   margin-left: var(--margin-medium);
-  margin-top: var(--margin-small);
-  width: 500px;
-  height: 200px;
-}
-#lower-img-carousel > span {
-  margin-left: var(--margin-xxsmall);
-  margin-right: var(--margin-xxsmall);
-  font-size: var(--font-small);
-}
-#lower-img-carousel > ul {
-  margin: 0px 0px 0px 0px;
-  padding: 0px 0px 0px 0px;
-  font-size: 0px;
-}
-#lower-img-carousel > ul > li {
-  display: inline-block;
-  background: orangered;
-  height: 10px;
+
+  width: 290px;
+  height: 145px;
 }
 </style>
