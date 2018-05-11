@@ -1,0 +1,118 @@
+:root {
+    --body-width: 1190px;
+
+    --font-xxsmall: 8px;
+    --font-xsmall: 10px;
+    --font-small: 12px;
+    --font-medium: 14px;
+    --font-large: 18px;
+    --font-xlarge: 22px;
+
+    --margin-xxxsmall: 2px;
+    --margin-xxsmall: 5px;
+    --margin-xsmall: 10px;
+    --margin-small: 14px;
+    --margin-medium: 20px;
+}
+.clearfix{
+    float: auto;
+}
+.font-small{
+    font-size: var(--font-small);
+}
+.orangered-text{
+    color: orangered
+}
+li{
+    list-style:none;
+}
+.solid-border{
+    border-style:solid;
+}
+.font-medium{
+    font-size: var(--font-medium)
+}
+.font-large{
+    font-size: var(--font-large)
+}
+.bold{
+    font-weight: bold;
+}
+body{
+    padding:0px;
+    margin:0px;
+    background:rgb(240, 240, 240);
+}
+.main-container{
+    width: var(--body-width);
+    margin-left:auto;
+    margin-right:auto;
+}
+.float-left{
+    float:left;
+}
+.float-left{
+    float:left;
+}
+.float-right{
+    float:right;
+}
+/* .float-right>li:first-child ul{
+    right:4px;
+    left:auto;
+} */
+.show{
+    display:block;
+}
+.hide{
+    display:none;
+}
+.h-list > li {
+    display: inline-block;
+}
+.cursor-normal{
+    cursor: auto;
+}
+.fixed-top{
+    position: fixed;
+    top:0;
+    z-index: 3;
+}
+.mlra {
+    /* margin left right auto */
+    margin-left: auto;
+    margin-right: auto;
+}
+.avatar-small {
+    height: 36px;
+    width: 36px;
+}
+.avatar-medium {
+    height: 72px;
+    width: 72px;
+}
+.no-margin {
+    /* no margin */
+    margin: 0px 0px 0px 0px;
+
+}
+.no-padding {
+    /* no padding  */
+    padding: 0px 0px 0px 0px;
+}
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Safari */
+       -khtml-user-select: none; /* Konqueror HTML */
+         -moz-user-select: none; /* Firefox */
+          -ms-user-select: none; /* Internet Explorer/Edge */
+              user-select: none; /* Non-prefixed version, currently
+                                    supported by Chrome and Opera */
+  }
+.clickable {
+    cursor: pointer;
+}
+input[type="text"] {
+    background: transparent;
+    border: none;
+}
