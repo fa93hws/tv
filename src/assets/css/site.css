@@ -116,3 +116,15 @@ input[type="text"] {
     background: transparent;
     border: none;
 }
+input:focus {
+    outline: 0px;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type="date"]::-webkit-clear-button {
+ -webkit-appearance: none;
+  display: none;
+}

@@ -1,6 +1,6 @@
 <template>
   <v-form class = 'right-grids-dropdown-form'>
-    <fieldset>
+    <fieldset class = 'right-grids-dropdown-fieldset'>
       <input type="radio" value="dx" name="group1" id="dx">
       <label for="dx">电信</label>
 
@@ -81,15 +81,7 @@ export default {
 </style>
 
 <style scoped>
-fieldset {
-  margin-top: -4px;
-  margin-bottom: var(--margin-xxsmall);
-  border: 0px;
-}
-fieldset > input:nth-of-type(2) {
+fieldset.right-grids-dropdown-fieldset > input:nth-of-type(2) {
   margin-left: var(--margin-small);
-}
-fieldset > label {
-  font-size: var(--font-small);
 }
 </style>

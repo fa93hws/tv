@@ -1,6 +1,6 @@
 <template>
   <div>
-    car insurance
+    car insurances
   </div>
 </template>
 

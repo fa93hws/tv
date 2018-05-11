@@ -21,9 +21,16 @@
       </li>
     </ul>
     <div id = 'grid-drop-down-container'>
-      <RechargeGrids ref="dropDownContainer0" @onClose="tabShownIdx=-1"/>
-      <TravelGrids ref="dropDownContainer1" @onClose="tabShownIdx=-1"/>
-      <CarInsGrids ref="dropDownContainer2" @onClose="tabShownIdx=-1"/>
+      <GridDropdownControl 
+        v-for=" (detail, idx) in dropdownDetails" v-bind:key=idx
+        ref="dropDownContainer"
+        @onClose="tabShownIdx=-1"
+        :usedComponents="detail.components"
+        :tabTitles="detail.tabTitles"
+      />
+      <!-- <RechargeGrids ref="dropDownContainer0" @onClose="tabShownIdx=-1"/> -->
+      <!-- <TravelGrids ref="dropDownContainer1" @onClose="tabShownIdx=-1"/> -->
+      <!-- <CarInsGrids ref="dropDownContainer2" @onClose="tabShownIdx=-1"/> -->
       <v-icon v-if="tabShownIdx>-1"
         @mousedown="tabShownIdx=-1"
         id = 'drop-down-close-button'
@@ -36,14 +43,22 @@
 </template>
 
 <script>
-import RechargeGrids from './RechargeGrids.vue';
-import TravelGrids from './TravelGrids.vue';
 import CarInsGrids from './CarInsGrids.vue';
+
+import GridDropdownControl from './GridDropdownControl';
+import Recharge1 from './Recharge1';
+import Recharge2 from './Recharge2';
+import Recharge3 from './Recharge3';
+import Recharge4 from './Recharge4';
+import Travel1 from './Travel1';
 
 export default {
   name: 'RightGrids',
+  mounted: function () {
+    // console.log(this.dropdownDetails)
+  },
   components: {
-    RechargeGrids, TravelGrids, CarInsGrids,
+    CarInsGrids,GridDropdownControl
   },
   computed: {
     items: function () {
@@ -55,18 +70,26 @@ export default {
   },
   data: function () {
     return {
-      tabShownIdx: -1
+      tabShownIdx: -1,
+      dropdownDetails: [{
+        // recharge
+        components: [Recharge1,Recharge2,Recharge3,Recharge4],
+        tabTitles: ['充话费','充流量','充固话','充宽带']
+      },{
+        // travel
+        components: [Travel1],
+        tabTitles: ['机票']
+      }]
     }
   },
   watch: {
     tabShownIdx: function (after, before) {
-      // console.log(this.$refs['dropDownContainer1'])
       if (before > -1){
-        this.$refs['dropDownContainer'+before].$el.style.display = 'none';
-        this.$refs['dropDownContainer'+before].tabClose();
+        this.$refs.dropDownContainer[before].$el.style.display = 'none';
+        this.$refs.dropDownContainer[before].tabClose();
       }
       if (after > -1)
-        this.$refs['dropDownContainer'+after].$el.style.display = 'block';
+        this.$refs.dropDownContainer[after].$el.style.display = 'block';
     }
   },
   methods: {

@@ -56,9 +56,11 @@ export default {
     this.$nextTick( ()=>{
       document.addEventListener('click', (ele) => {
         if (typeof this.$refs.withDropdown == 'undefined') return;
-        if (!this.$refs.withDropdown.contains(ele.target)){
-          if (!this.hideRechargeDropDown)
-            this.hideRechargeDropDown = true;
+        if (typeof this.$refs.dropDown == 'undefined') return;
+        if (!this.$refs.withDropdown.contains(ele.target) &&
+            !this.$refs.dropDown.contains(ele.target) ){
+          if (!this.hideDataPicker)
+            this.hideDataPicker = true;
         }
       })
     })
