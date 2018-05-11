@@ -28,9 +28,6 @@
         :usedComponents="detail.components"
         :tabTitles="detail.tabTitles"
       />
-      <!-- <RechargeGrids ref="dropDownContainer0" @onClose="tabShownIdx=-1"/> -->
-      <!-- <TravelGrids ref="dropDownContainer1" @onClose="tabShownIdx=-1"/> -->
-      <!-- <CarInsGrids ref="dropDownContainer2" @onClose="tabShownIdx=-1"/> -->
       <v-icon v-if="tabShownIdx>-1"
         @mousedown="tabShownIdx=-1"
         id = 'drop-down-close-button'
@@ -43,14 +40,17 @@
 </template>
 
 <script>
-import CarInsGrids from './CarInsGrids.vue';
-
 import GridDropdownControl from './GridDropdownControl';
 import Recharge1 from './Recharge1';
 import Recharge2 from './Recharge2';
 import Recharge3 from './Recharge3';
 import Recharge4 from './Recharge4';
 import Travel1 from './Travel1';
+import Travel2 from './Travel2';
+import Travel3 from './Travel3';
+import Travel4 from './Travel4';
+import Car1 from './Car1';
+import Car2 from './Car2';
 
 export default {
   name: 'RightGrids',
@@ -58,7 +58,7 @@ export default {
     // console.log(this.dropdownDetails)
   },
   components: {
-    CarInsGrids,GridDropdownControl
+    GridDropdownControl
   },
   computed: {
     items: function () {
@@ -77,8 +77,11 @@ export default {
         tabTitles: ['充话费','充流量','充固话','充宽带']
       },{
         // travel
-        components: [Travel1],
-        tabTitles: ['机票']
+        components: [Travel1,Travel2,Travel3,Travel4],
+        tabTitles: ['机票','酒店客栈','度假门票','火车票']
+      },{
+        components: [Car1,Car2],
+        tabTitles: ['车险','意外险']
       }]
     }
   },

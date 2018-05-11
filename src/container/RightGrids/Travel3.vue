@@ -1,12 +1,12 @@
-<template>Travel1.2
+<template>
   <v-form class = 'right-grids-dropdown-form'>
-
+    Travel3
   </v-form>
 </template>
 
 <script>
 export default {
-  name: 'Travel1',
+  name: 'Travel3',
   methods:{
     hideAll: function () {
       
