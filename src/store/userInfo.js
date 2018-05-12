@@ -24,11 +24,12 @@ const getters = {
 
 // actions
 const actions = {
-  logInWithPassword: function ({ commit, state }, id, password) {
-    let {userInfo, success} = userApi.login.withPassword(id, password);
-    if (success) {
-      commit('loggedIn', userInfo);
-    }
+  logInWithPassword: function ({ commit }, {id, password}) {
+    userApi.login.withPassword(id,password).then( (userInfo) => {
+      commit('loggedIn', userInfo)
+    }).catch( (error) => {
+      console.log(error);
+    })
   }
 }
 

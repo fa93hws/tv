@@ -10,7 +10,7 @@
     </ul>
     <ul id = 'right-col-user-board-login-controls' class = 'h-list no-padding mlra'>
       <li><a class = 'bold noselect clickable'
-        @mousedown="postLogin"
+        @mousedown="postLogin({id:'user',password:'password'})"
         >登录
       </a></li>
       <li><a class = 'bold noselect clickable'>注册</a></li>
