@@ -52,37 +52,34 @@
 
 <script>
 export default {
-  name: 'Recharge2',
-  mounted: function () {
-    this.$nextTick( ()=>{
-      document.addEventListener('click', (ele) => {
-        if (typeof this.$refs.withDropdown == 'undefined') return;
-        if (!this.$refs.withDropdown.contains(ele.target)){
-          if (!this.hideRechargeDropDown)
-            this.hideRechargeDropDown = true;
+  name: "Recharge2",
+  mounted: function() {
+    this.$nextTick(() => {
+      document.addEventListener("click", ele => {
+        if (typeof this.$refs.withDropdown == "undefined") return;
+        if (!this.$refs.withDropdown.contains(ele.target)) {
+          if (!this.hideRechargeDropDown) this.hideRechargeDropDown = true;
         }
-      })
-    })
+      });
+    });
   },
-  data: function () {
+  data: function() {
     return {
-      phoneNumber: '',
+      phoneNumber: "",
       amountIdx: 0,
-      amounts:[100,300,500,1000,2000,3000,5000,10000],
+      amounts: [100, 300, 500, 1000, 2000, 3000, 5000, 10000],
       mouseInPhoneNumberInput: false,
       hideRechargeDropDown: true
-    }
+    };
   },
   methods: {
-    hideAll: function () {
-      
-    }
+    hideAll: function() {}
   }
-}
+};
 </script>
 
 <style scoped>
-  @import './right_grids_drop_down.css';
+@import "./right_grids_drop_down.css";
 </style>
 
 <style scoped>
@@ -91,7 +88,7 @@ export default {
   width: 84px;
 }
 #right-grids-recharge-data-option-wrapper > select {
-  width: 70%
+  width: 70%;
 }
 .half-length.right-grids-dropdown-form-input {
   display: inline-block;
@@ -114,7 +111,7 @@ ul.h-list.double-column > li {
   width: 50%;
 }
 ul.double-column.h-list > li:nth-last-child(2) {
-	border-bottom:none;
+  border-bottom: none;
 }
 ul.h-list.double-column > li > span {
   display: inline-block;
@@ -123,7 +120,7 @@ ul.h-list.double-column > li > span {
   font-size: var(--font-small);
   margin-left: 5%;
   margin-right: 5%;
-  max-width:88%
+  max-width: 88%;
 }
 </style>
 

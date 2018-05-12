@@ -32,26 +32,25 @@
 </template>
 
 <script>
-import {mapGetters, mapActions} from 'vuex';
+import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "NavBarLoginControl",
-  data: function () {
-    return{
-    }
+  data: function() {
+    return {};
   },
   computed: {
     ...mapGetters({
-      userInfo: 'getUserInfo',
-      isLoggedIn: 'checkLoginStatus',
+      userInfo: "getUserInfo",
+      isLoggedIn: "checkLoginStatus"
     })
   },
   methods: {
     ...mapActions({
-      postLogin: 'logInWithPassword'
+      postLogin: "logInWithPassword"
     })
-  },
-}
+  }
+};
 </script>
 
 <style scoped>

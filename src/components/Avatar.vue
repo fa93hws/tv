@@ -14,29 +14,23 @@
 
 <script>
 export default {
-  name: 'Avatar',
-  props:{
+  name: "Avatar",
+  props: {
     width: Number,
     height: Number,
     url: {
       type: String,
-      default: ''
+      default: ""
     }
   },
   computed: {
-    isUrlGiven: function () {
-     return typeof this.url == 'undefined' || this.url == '' ? false : true;
+    isUrlGiven: function() {
+      return typeof this.url == "undefined" || this.url == "" ? false : true;
     }
   },
-  mounted: function () {
-    this.$refs.avatar.style.width = this.width + 'px';
-    this.$refs.avatar.style.height = this.height + 'px';
+  mounted: function() {
+    this.$refs.avatar.style.width = this.width + "px";
+    this.$refs.avatar.style.height = this.height + "px";
   }
-}
+};
 </script>
-
-<style scoped>
-avatar-container {
-
-}
-</style>

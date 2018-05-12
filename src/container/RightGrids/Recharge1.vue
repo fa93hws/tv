@@ -49,41 +49,40 @@
 </template>
 
 <script>
-
 export default {
-  name: 'Recharge1',
-  data: function () {
+  name: "Recharge1",
+  data: function() {
     return {
-      phoneNumber: '',
+      phoneNumber: "",
       amountIdx: 0,
-      amounts:[100,10,200,20,300,30,500,50,1000],
+      amounts: [100, 10, 200, 20, 300, 30, 500, 50, 1000],
       mouseInPhoneNumberInput: false,
       hideRechargeDropDown: true
-    }
+    };
   },
-  mounted: function () {
-    this.$nextTick( ()=>{
-      document.addEventListener('click', (ele) => {
-        if (typeof this.$refs.withDropdown == 'undefined') return;
-        if (typeof this.$refs.dropDown == 'undefined') return;
-        if (!this.$refs.withDropdown.contains(ele.target) &&
-            !this.$refs.dropDown.contains(ele.target) ){
-          if (!this.hideDataPicker)
-            this.hideDataPicker = true;
+  mounted: function() {
+    this.$nextTick(() => {
+      document.addEventListener("click", ele => {
+        if (typeof this.$refs.withDropdown == "undefined") return;
+        if (typeof this.$refs.dropDown == "undefined") return;
+        if (
+          !this.$refs.withDropdown.contains(ele.target) &&
+          !this.$refs.dropDown.contains(ele.target)
+        ) {
+          if (!this.hideDataPicker) this.hideDataPicker = true;
         }
-      })
-    })
+      });
+    });
   },
   methods: {
-    hideAll: function () {
+    hideAll: function() {
       this.hideRechargeDropDown = true;
     }
   },
-  watch: {
-  }
-}
+  watch: {}
+};
 </script>
 
 <style scoped>
-  @import './right_grids_drop_down.css'
+@import "./right_grids_drop_down.css";
 </style>

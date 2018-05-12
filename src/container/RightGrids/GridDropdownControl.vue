@@ -25,33 +25,33 @@
 </template>
 
 <script>
-import Vue from 'vue';
+import Vue from "vue";
 
 export default {
-  name: 'RechargeGrids',
+  name: "RechargeGrids",
   props: {
     usedComponents: Array,
     tabTitles: Array
   },
-  data: function () {
+  data: function() {
     return {
-      active: '0',
-    }
+      active: "0"
+    };
   },
   methods: {
-    tabClose: function(){
+    tabClose: function() {
       let comps = this.$refs.gridTabs;
-      comps.forEach((ele)=>{
+      comps.forEach(ele => {
         ele.hideAll();
-      })
+      });
     }
   },
   watch: {
-    active: function (after, before) {      
+    active: function(after, before) {
       this.$refs.gridTabs[before].hideAll();
     }
   }
-}
+};
 </script>
 
 <style scoped>
@@ -62,20 +62,20 @@ ul.tab-controller {
 }
 ul.tab-controller > li {
   font-size: var(--font-small);
-  width:25%;
+  width: 25%;
 }
 ul.tab-controller > li.selected {
   color: orangered;
 }
-#grid-dropdown-controls >>> .tabs__container {
+#grid-dropdown-controls>>>.tabs__container {
   height: 20px;
   margin-top: var(--margin-xxsmall);
 }
-#grid-dropdown-controls >>> .tabs__items {
+#grid-dropdown-controls>>>.tabs__items {
   margin-left: var(--margin-small);
   margin-top: var(--margin-xsmall);
 }
-#grid-dropdown-controls >>> .tabs__item {
+#grid-dropdown-controls>>>.tabs__item {
   font-size: var(--font-small);
 }
 </style>

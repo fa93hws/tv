@@ -48,36 +48,35 @@
 
 <script>
 export default {
-  name: 'Recharge3',
-  data: function () {
+  name: "Recharge3",
+  data: function() {
     return {
-      phoneNumber: '',
+      phoneNumber: "",
       amountIdx: 0,
-      amounts:[100,10,200,20,300,30,500,50,1000],
+      amounts: [100, 10, 200, 20, 300, 30, 500, 50, 1000],
       mouseInPhoneNumberInput: false,
       hideRechargeDropDown: true
-    }
+    };
   },
-  mounted: function () {
-    this.$nextTick( ()=>{
-      document.addEventListener('click', (ele) => {
-        if (typeof this.$refs.withDropdown == 'undefined') return;
-        if (!this.$refs.withDropdown.contains(ele.target)){
-          if (!this.hideRechargeDropDown)
-            this.hideRechargeDropDown = true;
+  mounted: function() {
+    this.$nextTick(() => {
+      document.addEventListener("click", ele => {
+        if (typeof this.$refs.withDropdown == "undefined") return;
+        if (!this.$refs.withDropdown.contains(ele.target)) {
+          if (!this.hideRechargeDropDown) this.hideRechargeDropDown = true;
         }
-      })
-    })
+      });
+    });
   },
   methods: {
-    hideAll: function () {
+    hideAll: function() {
       this.hideRechargeDropDown = true;
     }
-  }  
-}
+  }
+};
 </script>
 <style scoped>
-  @import './right_grids_drop_down.css';
+@import "./right_grids_drop_down.css";
 </style>
 
 <style scoped>

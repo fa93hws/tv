@@ -14,14 +14,7 @@
       :container="upperImgCarousel.style"
       @load="loadStatus.upper.loadDone=true"
     />
-    <LoadingMask
-      v-show="!loadStatus.lower.loadDone"
-      key="lower-loading"
-      class='lower-img-carousel'
-    />
     <div
-      v-show="loadStatus.lower.loadDone"
-      v-if="loadStatus.lower.ajaxDone"
       key="lower-ready"
       class = 'lower-img-carousel'>
       <span>猫Logo</span>
@@ -42,8 +35,14 @@
         >
         </li>
       </ul>
+        <LoadingMask
+        v-show="!loadStatus.lower.loadDone"
+        class='lower-img-carousel-container'
+      />
       <ImgCarousel
         class='lower-carousel-container'
+        v-show="loadStatus.lower.loadDone"
+        v-if="loadStatus.lower.ajaxDone"
         ref="lowerCarousel"
         :imgurls="lowerImgCarousel.url"
         :container="lowerImgCarousel.style"
@@ -56,89 +55,91 @@
 </template>
 
 <script>
-import ImgCarousel from '../components/ImgCarousel.vue';
-import ResourcesAPI from '../api/Resources';
-import LoadingMask from '../components/LoadingMask';
+import ImgCarousel from "../components/ImgCarousel.vue";
+import ResourcesAPI from "../api/Resources";
+import LoadingMask from "../components/LoadingMask";
 
 export default {
-  name: 'CenterImageCarousels',
+  name: "CenterImageCarousels",
   components: {
     ImgCarousel,
     LoadingMask
   },
-  data: function () {
+  data: function() {
     return {
       upperImgCarousel: {
-        style:{
+        style: {
           width: 500,
-          height: 250,
+          height: 250
         },
         url: []
       },
       lowerImgCarousel: {
-        style:{
+        style: {
           width: 500,
-          height: 200,
+          height: 215
         },
         url: [],
-        options:{
-          junpToolTip: false,
+        options: {
+          junpToolTip: false
         }
       },
       lowerImgIdx: 0,
       loadStatus: {
-        upper:{
+        upper: {
           ajaxDone: false,
           loadDone: false
         },
-        lower:{
+        lower: {
           ajaxDone: false,
           loadDone: false
         }
       }
-    }
+    };
   },
-  created: function () {
-    ResourcesAPI.getUpperCarouselImages().then( (response) => {
-      this.upperImgCarousel.url = response.data.Images;
-      this.$nextTick( function () {
-        this.loadStatus.upper.ajaxDone = true;
-      })      
-    }).catch( (error)=>{
-      // handel error
-      // console.log(error)
-    })
+  created: function() {
+    ResourcesAPI.getUpperCarouselImages()
+      .then(response => {
+        this.upperImgCarousel.url = response.data.Images;
+        this.$nextTick(function() {
+          this.loadStatus.upper.ajaxDone = true;
+        });
+      })
+      .catch(error => {
+        // handel error
+        // console.log(error)
+      });
 
-    ResourcesAPI.getLowerCarouselImages().then( (response) => {
-      this.lowerImgCarousel.url = response.data.Images;
-      this.$nextTick( function () {
-        this.loadStatus.lower.ajaxDone = true;
-      })      
-    }).catch( (error)=>{
-      // handel error
-      // console.log(error)
-    })
-    
+    ResourcesAPI.getLowerCarouselImages()
+      .then(response => {
+        this.lowerImgCarousel.url = response.data.Images;
+        this.$nextTick(function() {
+          this.loadStatus.lower.ajaxDone = true;
+        });
+      })
+      .catch(error => {
+        // handel error
+        // console.log(error)
+      });
   },
-  mounted: function () {
-  },
+  mounted: function() {},
   methods: {
-    lowerIdxChange: function (after, before) {
+    lowerIdxChange: function(after, before) {
       this.lowerImgIdx = after;
     },
-    lowerCarouselJumpTo : function (toIdx) {
+    lowerCarouselJumpTo: function(toIdx) {
       this.$refs.lowerCarousel.jumpTo(this.lowerImgIdx, toIdx);
     },
-    onLowerReady: function () {
+    onLowerReady: function() {
       this.loadStatus.lower.loadDone = true;
       // set width for lowerCarouselJumpController
       let spans = this.$refs.lowerCarouselJumpControllerPiece;
-      for (let i=0; i < spans.length; i++){
-        spans[i].style.width = 100/spans.length + '%';
-      }
+      spans.forEach( (el) => {
+        el.style.width = 100/spans.length + '%'
+      })
     }
   }
-}
+};
 </script>
 
 <style scoped>
@@ -156,12 +157,15 @@ export default {
   margin-left: var(--margin-small);
   margin-top: var(--margin-small);
   width: 500px;
-  height: 200px;
 }
 .lower-img-carousel > span {
   margin-left: var(--margin-xxsmall);
   margin-right: var(--margin-xxsmall);
   font-size: var(--font-small);
+}
+.lower-img-carousel-container {
+  width: 500px;
+  height: 215px;
 }
 ul {
   font-size: 0px;
@@ -173,7 +177,7 @@ li {
   cursor: pointer;
   height: 10px;
 }
-li.selected{
+li.selected {
   background: black;
 }
 </style>

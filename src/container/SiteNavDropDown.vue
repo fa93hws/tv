@@ -141,119 +141,121 @@
 
 <script>
 export default {
-  name: 'SiteNavDropDown',
+  name: "SiteNavDropDown",
   created: function() {
     this.isShown = false;
   },
-  mounted: function(){
+  mounted: function() {
     // adjust right aligned
     let bodyWidth = document.body.clientWidth;
-    let mainWidth = document.getElementsByClassName('main-container')[0].clientWidth;
-    this.$refs.container.style.right = (bodyWidth-mainWidth)/2 + "px";
+    let mainWidth = document.getElementsByClassName("main-container")[0]
+      .clientWidth;
+    this.$refs.container.style.right = (bodyWidth - mainWidth) / 2 + "px";
     // add hover style
   },
-  data: function(){
+  data: function() {
     return {
       inMenu: false,
       inDropDown: false,
-      isShown:false
-    }
+      isShown: false
+    };
   },
   watch: {
     inMenu: {
-      handler: function(after,before){
-        this.updateDropDownStatus(after,before);
+      handler: function(after, before) {
+        this.updateDropDownStatus(after, before);
       }
     },
     inDropDown: {
       // handler: this.updateDropDownStatus
-      handler: function(after,before){
-        this.updateDropDownStatus(after,before);
+      handler: function(after, before) {
+        this.updateDropDownStatus(after, before);
       }
     }
   },
   methods: {
-    updateDropDownStatus: function (after, before) {
+    updateDropDownStatus: function(after, before) {
       this.isShown = this.inMenu || this.inDropDown;
     }
   },
-  updated: function () {
+  updated: function() {
     // adjust v-line height
     // console.log(this.$refs['vLine1'].parentElement.offsetHeight);
     if (this.isShown)
-      for (let i=0;i<3;i++){
-        this.$refs['vLine'+i].style.height = this.$refs['outterCell'+i].offsetHeight + 'px';
+      for (let i = 0; i < 3; i++) {
+        this.$refs["vLine" + i].style.height =
+          this.$refs["outterCell" + i].offsetHeight + "px";
       }
   }
-}
+};
 </script>
 
 <style scoped>
-#drop-down{
+#drop-down {
   position: absolute;
   width: var(--body-width);
-  z-index:1;
-  background:white;
+  z-index: 1;
+  background: white;
 }
-#drop-down > div{
-  display:inline-block;
+#drop-down > div {
+  display: inline-block;
 }
-.inner-container{
-  width:24%;
-  vertical-align:top;
+.inner-container {
+  width: 24%;
+  vertical-align: top;
 }
-ul{
-  width:100%;
-  padding-left:var(--margin-text-small);
+ul {
+  width: 100%;
+  padding-left: var(--margin-text-small);
   word-wrap: break-word;
 }
-li{
+li {
   /* display:inline-block; */
-  padding:0px;
-  margin:0px;
+  padding: 0px;
+  margin: 0px;
   vertical-align: middle;
 }
-hr{
+hr {
   width: 0px;
   border-style: solid;
   border-color: silver;
   vertical-align: top;
-  display:inline-block;
+  display: inline-block;
 }
-ul>li:not(:first-child){
-  display:inline-block
+ul > li:not(:first-child) {
+  display: inline-block;
 }
-#inner-ul-1>li{
-  width:24%
+#inner-ul-1 > li {
+  width: 24%;
 }
-a{
-  padding:5px;
+a {
+  padding: 5px;
 }
-li>a:hover{
-  color:white
+li > a:hover {
+  color: white;
 }
-#inner-ul-1>li>a:hover{
-  background:red;
+#inner-ul-1 > li > a:hover {
+  background: red;
 }
-#inner-ul-2>li{
-  width:32%
+#inner-ul-2 > li {
+  width: 32%;
 }
-#inner-ul-2>li>a:hover{
-  background:green;
+#inner-ul-2 > li > a:hover {
+  background: green;
 }
-#inner-ul-3>li{
-  width:32%
+#inner-ul-3 > li {
+  width: 32%;
 }
-#inner-ul-3>li>a:hover{
-  background:purple;
+#inner-ul-3 > li > a:hover {
+  background: purple;
 }
-#inner-ul-4>li{
-  width:48%
+#inner-ul-4 > li {
+  width: 48%;
 }
-#inner-ul-4>li>a:hover{
-  background:blue;
+#inner-ul-4 > li > a:hover {
+  background: blue;
 }
-#sit-nav-drop-down-menu:hover{
-  background: white
+#sit-nav-drop-down-menu:hover {
+  background: white;
 }
 </style>

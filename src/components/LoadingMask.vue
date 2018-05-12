@@ -8,8 +8,8 @@
 
 <script>
 export default {
-  name: 'LazyLoadMask',
-}
+  name: "LazyLoadMask"
+};
 </script>
 
 <style>

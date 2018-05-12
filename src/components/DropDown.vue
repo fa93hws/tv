@@ -7,11 +7,12 @@
       :style="[this.isShown ? this.styles.menuOpenStyle : '']"
       :class="{ menuOpenStyle: isShown}"
     >
-      <span>{{text}} &#9661; </span>
+      <span>{{text}}</span>
+      <v-icon class = 'icon' >keyboard_arrow_down</v-icon>
     </div>
     <div
       ref = 'dropDown'
-      id="drop-down-c" :class="{hide: !isShown, show: isShown}"
+      class="drop-down-c" :class="{hide: !isShown, show: isShown}"
       :style="this.styles.dropDown"
       @mouseover="()=>{this.isShown=true;}"
       @mouseleave="()=>{this.isShown=false}"
@@ -33,15 +34,19 @@
 <script>
 export default {
   name: "DropDown",
-  methods:{
-    changeBackgroundOnHover: function (idx) {
-      for (let i=0; i<this.optionList.length; i++){
-        if (i===idx)
-          this.$refs.dropDownList[i].style.background = this.styles.dropDownItemHover.hover_bg;
+  methods: {
+    changeBackgroundOnHover: function(idx) {
+      for (let i = 0; i < this.optionList.length; i++) {
+        if (i === idx)
+          this.$refs.dropDownList[
+            i
+          ].style.background = this.styles.dropDownItemHover.hover_bg;
         else
-          this.$refs.dropDownList[i].style.background = this.$refs.dropDown.style.background;
+          this.$refs.dropDownList[
+            i
+          ].style.background = this.$refs.dropDown.style.background;
       }
-    }//changeBackgroundOnHover
+    } //changeBackgroundOnHover
   },
   props: {
     text: {
@@ -57,13 +62,15 @@ export default {
       required: true
     },
     styles: {
-      menuOpenStyle:Object,
+      menuOpenStyle: Object,
       dropDown: Object,
-      dropDownItemHover: Object,
+      dropDownItemHover: Object
     },
     dropDownItemStyle: {
       type: Object,
-      default: function () {return {};}
+      default: function() {
+        return {};
+      }
     }
   },
   data() {
@@ -73,31 +80,34 @@ export default {
       dropDownStyle: {},
       menuOpenStyle: {},
       dropDownItemHover: {}
-    }
+    };
   },
-  updated: function () {
-    this.$emit('updated-handler');
+  updated: function() {
+    this.$emit("updated-handler");
   }
-}
+};
 </script>
 
 <style scoped>
-#drop-down-c{
-    -webkit-padding-start: 0px;
-    -webkit-margin-before: 0px;
-    -webkit-margin-after: 0px;
-    margin-top: 0px;
-    margin-right: auto;
-    margin-bottom: 0px;
-    margin-left: auto;
-    background:white;
-    z-index:1;
-    /* border-style: solid; */
-    position: absolute;
+.drop-down-c {
+  -webkit-padding-start: 0px;
+  -webkit-margin-before: 0px;
+  -webkit-margin-after: 0px;
+  margin-top: 0px;
+  margin-right: auto;
+  margin-bottom: 0px;
+  margin-left: auto;
+  background: white;
+  z-index: 1;
+  /* border-style: solid; */
+  position: absolute;
 }
-ul{
-  list-style-type:none;
-  padding-left:0px;
+.drop-down-c > ul {
+  list-style-type: none;
+  padding-left: 0px;
+}
+.open > .icon {
+  /* font-size: var(--font-small); */
 }
 </style>
 

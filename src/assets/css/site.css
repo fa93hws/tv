@@ -5,7 +5,7 @@
     --font-xsmall: 10px;
     --font-small: 12px;
     --font-medium: 14px;
-    --font-large: 18px;
+    --font-large: 16px;
     --font-xlarge: 22px;
     --font-xxxlarge: 40px;
 
@@ -128,4 +128,9 @@ input::-webkit-inner-spin-button {
 input[type="date"]::-webkit-clear-button {
  -webkit-appearance: none;
   display: none;
+}
+.empty-element {
+    font-size: 0px;
+    min-height: 0px;
+    height: 0px;
 }

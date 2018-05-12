@@ -93,73 +93,72 @@
 </template>
 
 <script>
-import CityPicker from '../../components/CityPicker';
+import CityPicker from "../../components/CityPicker";
 
 export default {
-  name: 'Travel1',
-  components:{
+  name: "Travel1",
+  components: {
     CityPicker
   },
-  methods:{
-    hideAll: function () {
-      this.showCityPicker = false;      
-    },
-    cityPickerClick: function (from) {
-      this.showCityPicker = !this.showCityPicker;
-      this.cityPickerFor = from;
-      console.log(this.cityPickerFor)
-    },
-    cityChosen: function (city) {
-      if (this.cityPickerFor == 'depart')
-        this.$refs.resultDepart.value = city;
-      else
-        this.$refs.resultArrival.value = city;
+  methods: {
+    hideAll: function() {
       this.showCityPicker = false;
     },
-  },
-  data: function () {
-    return {
-      showCityPicker: false,
-      tripType: 'single',
-      cityPickerFor: 'depart'
+    cityPickerClick: function(from) {
+      this.showCityPicker = !this.showCityPicker;
+      this.cityPickerFor = from;
+      console.log(this.cityPickerFor);
+    },
+    cityChosen: function(city) {
+      if (this.cityPickerFor == "depart") this.$refs.resultDepart.value = city;
+      else this.$refs.resultArrival.value = city;
+      this.showCityPicker = false;
     }
   },
-  mounted: function () {
-    this.$nextTick( ()=>{
-      document.addEventListener('click', (ele) => {
-        if (typeof this.$refs.withDropdown0 == 'undefined') return;
-        if (typeof this.$refs.withDropdown1 == 'undefined') return;
-        if (typeof this.$refs.dropDown == 'undefined') return;
-        if (!this.$refs.withDropdown0.contains(ele.target) &&
-        !this.$refs.withDropdown1.contains(ele.target) &&
-        !this.$refs.dropDown.contains(ele.target) ){
-          if (this.showCityPicker)
-            this.showCityPicker = false;
-        }
-      })
-    })
+  data: function() {
+    return {
+      showCityPicker: false,
+      tripType: "single",
+      cityPickerFor: "depart"
+    };
   },
+  mounted: function() {
+    this.$nextTick(() => {
+      document.addEventListener("click", ele => {
+        if (typeof this.$refs.withDropdown0 == "undefined") return;
+        if (typeof this.$refs.withDropdown1 == "undefined") return;
+        if (typeof this.$refs.dropDown == "undefined") return;
+        if (
+          !this.$refs.withDropdown0.contains(ele.target) &&
+          !this.$refs.withDropdown1.contains(ele.target) &&
+          !this.$refs.dropDown.contains(ele.target)
+        ) {
+          if (this.showCityPicker) this.showCityPicker = false;
+        }
+      });
+    });
+  }
   // watch: {
   //   tripType: function () {
   //     console.log('123');
   //   }
   // }
-}
+};
 </script>
 
 <style scoped>
-  @import './right_grids_drop_down.css';
+@import "./right_grids_drop_down.css";
 </style>
 <style scoped>
 .right-grids-dropdown-form-input {
   width: 110px;
 }
 .right-grids-dropdown-form-input > input[type="text"] {
-  width: 40%
+  width: 40%;
 }
 .right-grids-dropdown-form-input > input[type="date"] {
-  margin-left:0px;
-  width: 71%
+  margin-left: 0px;
+  width: 71%;
 }
 .right-grids-dropdown-form-input > span {
   display: inline-block;

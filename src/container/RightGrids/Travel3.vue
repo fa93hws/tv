@@ -6,17 +6,15 @@
 
 <script>
 export default {
-  name: 'Travel3',
-  methods:{
-    hideAll: function () {
-      
-    }
+  name: "Travel3",
+  methods: {
+    hideAll: function() {}
   }
-}
+};
 </script>
 
 <style scoped>
-  @import './right_grids_drop_down.css';
+@import "./right_grids_drop_down.css";
 </style>
 <style scoped>
 

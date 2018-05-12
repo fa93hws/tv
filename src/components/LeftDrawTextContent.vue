@@ -17,13 +17,13 @@ export default {
     title: String,
     texts: Array
   }
-}
+};
 </script>
 
 <style scoped>
-p{
+p {
   margin-top: var(--margin-xsmall);
-  margin-left:var(--margin-medium);
+  margin-left: var(--margin-medium);
   font-weight: bold;
 }
 ul {

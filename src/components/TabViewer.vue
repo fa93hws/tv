@@ -22,13 +22,16 @@
 </template>
 
 <script>
-import Vue from 'vue'
+import Vue from "vue";
 
 export default {
-  name: 'TabViewer',
-  created: function () {
-    for (let i=0; i < this.contentTemplate.template.length; i++)
-      Vue.component(this.contentTemplate.template[i].name, this.contentTemplate.template[i]);
+  name: "TabViewer",
+  created: function() {
+    for (let i = 0; i < this.contentTemplate.template.length; i++)
+      Vue.component(
+        this.contentTemplate.template[i].name,
+        this.contentTemplate.template[i]
+      );
   },
   props: {
     tabTitles: {
@@ -37,7 +40,7 @@ export default {
     },
     elementId: {
       type: Object,
-      required: false,
+      required: false
     },
     contentTemplate: {
       type: Object,
@@ -46,22 +49,21 @@ export default {
     bindData: Array
   },
   computed: {
-    templateIdx: function () {
+    templateIdx: function() {
       return this.contentTemplate.useTemplateIdx[this.tabIdx];
     }
   },
-  data: function () {
+  data: function() {
     return {
-      tabIdx: 0,
-    }
+      tabIdx: 0
+    };
   },
   watch: {
     tabIdx: {
-      handler: function (after, before) {
-      }
+      handler: function(after, before) {}
     }
   }
-}
+};
 </script>
 
 <style scoped>

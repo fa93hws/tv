@@ -1,7 +1,9 @@
 <template>
   <div>
-    <ul v-for="idxO in [0,1]" v-bind:key="idxO"
-      id = 'right-col-tab-content' class='h-list no-padding'>
+    <ul 
+      v-for="idxO in [0,1]" 
+      v-bind:key="idxO"
+      class='right-col-tab-content h-list no-padding'>
       <li
         v-for="idx in numberToRange(mode[idxO])"
         v-bind:key="idx"
@@ -15,50 +17,49 @@
 
 <script>
 export default {
-  name: 'RightTabContent',
+  name: "RightTabContent",
   props: {
     texts: {
       type: Array,
-      required: true,
-    },
-    mode:{
-      type: Array,
       required: true
     },
+    mode: {
+      type: Array,
+      required: true
+    }
   },
-  mounted: function () {
-  },
+  mounted: function() {},
   methods: {
-    getText: function (row, col) {
+    getText: function(row, col) {
       return this.texts[row * this.mode[0] + col];
     },
-    numberToRange: function (int) {
+    numberToRange: function(int) {
       let out = [];
-      for (let i=0; i<int; i++) out.push(i);
+      for (let i = 0; i < int; i++) out.push(i);
       return out;
     }
   }
-}
+};
 </script>
 
 <style scoped>
-ul {
+.right-col-tab-content {
   width: 90%;
-  margin: var(--margin-small) auto 0px auto;
+  margin: var(--margin-xsmall) auto 0px auto;
 }
-li {
+.right-col-tab-content > li {
   display: inline-block;
   overflow: hidden;
   white-space: nowrap;
   margin-left: 5%;
 }
-li:hover {
+.right-col-tab-content > li:hover {
   color: orangered;
 }
-li.long {
+.right-col-tab-content > li.long {
   width: 90%;
 }
-li.short {
+.right-col-tab-content > li.short {
   width: 40%;
 }
 </style>

@@ -52,108 +52,119 @@
 
 <script>
 export default {
-  name: 'ImgRollover',
-  props:{
+  name: "ImgRollover",
+  props: {
     imgurls: {
       type: Array,
       required: true
     },
     container: {
       type: Object,
-      default: function () {return {};}
+      default: function() {
+        return {};
+      }
     },
     options: {
       type: Object,
-      default: function () {return {};}
+      default: function() {
+        return {};
+      }
     }
   },
   computed: {
-    realOptions: function () {
+    realOptions: function() {
       return {
-        jumpToolTip: (typeof this.options.junpToolTip === 'undefined') ? true : this.options.junpToolTip,
-      }
+        jumpToolTip:
+          typeof this.options.junpToolTip === "undefined"
+            ? true
+            : this.options.junpToolTip
+      };
     },
     images: function() {
-      var images = this.imgurls.slice()
-      images.unshift(this.imgurls[this.imgurls.length-1]);
-      images.push(this.imgurls[0]);
-      return images;
+      return [
+        this.imgurls[this.imgurls.length - 1],
+        ...this.imgurls,
+        this.imgurls[0]
+      ];
     }
   },
-  data: function () {
+  data: function() {
     return {
       activeIdx: 0,
       inTransition: false,
       numImgLoaded: 0
-    }
+    };
   },
-  mounted: function () {
-    setTimeout( () => {
-      this.$refs.nextButton.style.left = this.container.width - this.$refs.nextButton.clientWidth + 'px';
+  mounted: function() {
+    setTimeout(() => {
+      this.$refs.nextButton.style.left =
+        this.container.width - this.$refs.nextButton.clientWidth + "px";
       if (this.realOptions.jumpToolTip)
-        this.$refs.dir.style.left = this.container.width/2 - this.$refs.dir.offsetWidth/2 + 'px';
-    },90)
-    this.$nextTick( ()=>{
-      this.$refs.carousel.style.transform = 'translateX(-' + this.container.width + 'px' + ')';
-      this.$refs.carousel.style.width = this.container.width * (this.imgurls.length + 2) + 'px';
-      this.$refs.carousel.classList.add('animated'); // add class later to prevent inital animation
-    })
+        this.$refs.dir.style.left =
+          this.container.width / 2 - this.$refs.dir.offsetWidth / 2 + "px";
+    }, 1000);
+    this.$nextTick(() => {
+      this.$refs.carousel.style.transform =
+        "translateX(-" + this.container.width + "px" + ")";
+      this.$refs.carousel.style.width =
+        this.container.width * (this.imgurls.length + 2) + "px";
+      this.$refs.carousel.classList.add("animated"); // add class later to prevent inital animation
+    });
   },
   methods: {
-    previous: function () {
-      if(this.activeIdx == -1)  this.resetToLast();
-      this.doTransform(this.activeIdx -= 1);
+    previous: function() {
+      if (this.activeIdx == -1) this.resetToLast();
+      this.doTransform((this.activeIdx -= 1));
     },
-    next: function () {
+    next: function() {
       if (this.activeIdx == this.imgurls.length) this.resetToFirst();
-      this.doTransform(this.activeIdx += 1);
+      this.doTransform((this.activeIdx += 1));
     },
-    resetToFirst: function () {
-      this.$refs.carousel.classList.remove('animated');
-      this.doTransform(this.activeIdx = -1);
-      this.$nextTick( ()=>{
-        this.$refs.carousel.classList.add('animated');
+    resetToFirst: function() {
+      this.$refs.carousel.classList.remove("animated");
+      this.doTransform((this.activeIdx = -1));
+      this.$nextTick(() => {
+        this.$refs.carousel.classList.add("animated");
         this.next();
       });
     },
-    resetToLast: function () {
-      this.$refs.carousel.classList.remove('animated');
-      this.doTransform(this.activeIdx = this.imgurls.length);
-      this.$nextTick( ()=>{
-        this.$refs.carousel.classList.add('animated');
+    resetToLast: function() {
+      this.$refs.carousel.classList.remove("animated");
+      this.doTransform((this.activeIdx = this.imgurls.length));
+      this.$nextTick(() => {
+        this.$refs.carousel.classList.add("animated");
         this.previous();
       });
     },
     jumpTo: function(fromActiveidx, toIdx) {
       if (this.getIdx(fromActiveidx) == toIdx) return;
-      this.doTransform(this.activeIdx = toIdx);
+      this.doTransform((this.activeIdx = toIdx));
     },
-    doTransform: function (activeIdx) {
+    doTransform: function(activeIdx) {
       let pxShift = (this.activeIdx + 1) * this.container.width;
-      this.$refs.carousel.style.transform = 'translateX(-' + pxShift + 'px' + ')';
+      this.$refs.carousel.style.transform =
+        "translateX(-" + pxShift + "px" + ")";
     },
-    getIdx: function (activeIdx) {
-      if (activeIdx >= 0)
-        return activeIdx % this.imgurls.length;
-      else
-        return activeIdx % this.imgurls.length + this.imgurls.length;
+    getIdx: function(activeIdx) {
+      if (activeIdx >= 0) return activeIdx % this.imgurls.length;
+      else return activeIdx % this.imgurls.length + this.imgurls.length;
     }
   },
   watch: {
-    activeIdx: function (after, before) {
+    activeIdx: function(after, before) {
       // console.log('child changed');
-      this.$emit('idxChanged', this.getIdx(after) ,this.getIdx(before));
+      this.$emit("idxChanged", this.getIdx(after), this.getIdx(before));
     },
-    numImgLoaded: function (after, before) {
-      if (this.numImgLoaded >= this.imgurls.length+2) {
-        this.$emit('load');
+    numImgLoaded: function(after, before) {
+      if (this.numImgLoaded >= this.imgurls.length + 2) {
+        this.$emit("load");
       }
     }
-  },
+  }
   // updated: function () {
   //   this.$emit('updated-handler');
   // }
-}
+};
 </script>
 
 <style scoped>
@@ -172,28 +183,28 @@ export default {
   background: black;
 }
 ul.carousel {
-  padding-left : 0px;
-  padding-top : 0px;
+  padding-left: 0px;
+  padding-top: 0px;
   margin-top: 0px;
 }
 ul.carousel > li {
   float: left;
 }
 
-.carousel-view{
+.carousel-view {
   position: relative;
   overflow: hidden;
 }
 #next-button {
   position: absolute;
-  top:50%;
+  top: 50%;
   text-align: right;
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
 }
 #previous-button {
   position: absolute;
-  top:50%;
+  top: 50%;
   text-align: left;
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
@@ -208,10 +219,10 @@ ul.carousel > li {
 }
 .button-bg {
   background: grey;
-  opacity:0.99;
+  opacity: 0.99;
 }
 .button-bg:hover {
-  opacity:0.5;
+  opacity: 0.5;
 }
 .carousel-tool-tip {
   position: absolute;

@@ -75,62 +75,61 @@
 </template>
 
 <script>
-import CityPicker from '../../components/CityPicker.vue';
+import CityPicker from "../../components/CityPicker.vue";
 
 export default {
-  name: 'Recharge4',
+  name: "Recharge4",
   components: {
     CityPicker
   },
-  mounted: function () {
-    this.$nextTick( ()=>{
-      document.addEventListener('click', (ele) => {
-        if (typeof this.$refs.withDropdown0 == 'undefined') return;
-        if (typeof this.$refs.dropDown0 == 'undefined') return;
-        if (!this.$refs.withDropdown0.contains(ele.target) &&
-        !this.$refs.dropDown0.contains(ele.target) ){
-          if (!this.hideDataPicker)
-            this.hideDataPicker = true;
+  mounted: function() {
+    this.$nextTick(() => {
+      document.addEventListener("click", ele => {
+        if (typeof this.$refs.withDropdown0 == "undefined") return;
+        if (typeof this.$refs.dropDown0 == "undefined") return;
+        if (
+          !this.$refs.withDropdown0.contains(ele.target) &&
+          !this.$refs.dropDown0.contains(ele.target)
+        ) {
+          if (!this.hideDataPicker) this.hideDataPicker = true;
         }
-      })
-      document.addEventListener('click', (ele) => {
-        if (typeof this.$refs.withDropdown1 == 'undefined') return;
-        if (!this.$refs.withDropdown1.contains(ele.target)){
-          if (!this.hideRechargeDropDown)
-            this.hideRechargeDropDown = true;
+      });
+      document.addEventListener("click", ele => {
+        if (typeof this.$refs.withDropdown1 == "undefined") return;
+        if (!this.$refs.withDropdown1.contains(ele.target)) {
+          if (!this.hideRechargeDropDown) this.hideRechargeDropDown = true;
         }
-      })
-    })
+      });
+    });
   },
   methods: {
-    hideAll: function () {
+    hideAll: function() {
       this.hideDataPicker = true;
     },
-    cityChosen: function (city) {
-      this.$refs.result.value = ['电信','联通'][this.provider] + '/' + city;
+    cityChosen: function(city) {
+      this.$refs.result.value = ["电信", "联通"][this.provider] + "/" + city;
       this.hideDataPicker = true;
     }
   },
-  computed: {
-  },
-  data: function () {
+  computed: {},
+  data: function() {
     return {
       hideDataPicker: true,
-      provider:0, //dx
+      provider: 0, //dx
       mouseInPhoneNumberInput: false,
-      phoneNumber: '',
+      phoneNumber: "",
       amountIdx: 0,
-      amounts:[100,10,200,20,300,30,500,50,1000],
+      amounts: [100, 10, 200, 20, 300, 30, 500, 50, 1000],
       hideRechargeDropDown: true
-    }
+    };
   }
-}
+};
 </script>
 <style scoped>
-  @import './right_grids_drop_down.css';
+@import "./right_grids_drop_down.css";
 </style>
 <style scoped>
-.city-picker-wrapper >>> .city-picker-tabs {
+.city-picker-wrapper>>>.city-picker-tabs {
   border-top: none;
 }
 .dx-lt-switcher {

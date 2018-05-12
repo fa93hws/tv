@@ -4,7 +4,7 @@
       id = 'top-search'
       class = 'mid-main'
     >
-      <div class= 'img-div float-left'>
+      <div class= 'logo-main img-div float-left'>
         <img src="../assets/logo.png" alt="Smiley face" height="70" width="150">
       </div>
       
@@ -64,145 +64,160 @@
 </template>
 
 <script>
-import SearchBox from "../components/SearchBox.vue"
+import SearchBox from "../components/SearchBox.vue";
 
 export default {
   name: "TopSearchBar",
   components: {
     SearchBox
   },
-  created: function () {
-    window.addEventListener('scroll', this.handleScroll);
+  created: function() {
+    window.addEventListener("scroll", this.handleScroll);
   },
-  mounted: function () {
+  mounted: function() {
     this.activeSearchTab(0);
   },
-  destroyed () {
-    window.removeEventListener('scroll', this.handleScroll);
+  destroyed() {
+    window.removeEventListener("scroll", this.handleScroll);
   },
-  data: function () {
+  data: function() {
     return {
       searchPlaceHolder: "some unicode text in 宝贝",
       activeTabId: -1,
-      searchTabText: ["宝贝","天猫","店铺"],
+      searchTabText: ["宝贝", "天猫", "店铺"],
       isSearchBarVisible: true
-    }
+    };
   },
-  watch:{
+  watch: {
     activeTabId: {
-      handler: function(after, before){
-        if (before > -1){
-          this.$refs['searchTab'][before].classList.remove('selected');
+      handler: function(after, before) {
+        if (before > -1) {
+          this.$refs["searchTab"][before].classList.remove("selected");
         }
-        this.$refs['searchTab'][after].classList.add('selected');
+        this.$refs["searchTab"][after].classList.add("selected");
       }
     }
   },
   methods: {
-    activeSearchTab: function (idx) {
+    activeSearchTab: function(idx) {
       this.activeTabId = idx;
     },
-    hideQRCode: function () {
-      this.$refs.qrBox.style.display = 'none';
+    hideQRCode: function() {
+      this.$refs.qrBox.style.display = "none";
     },
-    handleScroll: function () {
+    handleScroll: function() {
       let scrollDistance = window.scrollY;
       let thisHeight = this.$el.clientHeight;
-      let navHeight = document.getElementsByClassName('nav')[0].clientHeight;
+      let navHeight = document.getElementsByClassName("nav")[0].clientHeight;
       let marginBetween = 14;
 
-      this.isSearchBarVisible = scrollDistance < thisHeight + navHeight + marginBetween;
+      this.isSearchBarVisible =
+        scrollDistance < thisHeight + navHeight + marginBetween;
       // console.log(this);
       // this.isSearchBarVisible = ((elemBottom <= docViewBottom) && (elemTop >= docViewTop));
     }
   }
-}
+};
 </script>
 
 <style scoped>
-  #top-search-container{
-    width: 100%;
-    height: 80px;
-  }
-  .mid-main {
-    width: var(--body-width);
-    margin-left: auto;
-    margin-right: auto;
-  }
-  #top-search-fixed-wrapper{
-    height:50px;
-    width: 100%;
-    background: white;
-  }
-  /* var(--body-width); */
-  #top-search{
-    margin-top: var(--margin-medium);
-    text-align: center;
-  }
-  #top-search > div{
-    display: inline-block;
-  }
-  .img-div{
-    margin-top: auto;
-    margin-bottom: auto;
-  }
-  .margin-search-box-left{
-    margin-top:4px;
-    margin-left: 100px;
-  }
-  #top-search-label-wrapper, #top-search-bottom-wrapper{
-    text-align: left;
-    margin-left: 18px;
-    color: orangered
-  }
-  #top-search-bottom-wrapper{
-    margin-top:5px;
-  }
-  #top-search-label-wrapper > span {
-    padding: 5px 5px 1px 5px;
-    cursor: pointer;
-  }
-  #top-search-label-wrapper > span:not(.selected):hover{
-    background: rgb(255, 249, 237);
-  }
-  #top-search-bottom-wrapper > span{
-    padding:  2px;
-    color: grey;
-    cursor: pointer;
-  }
-  span.selected{
-    /* background:orangered; */
-    background: linear-gradient(right, orangered, orange);
-    color:white;
-    border-top-left-radius:  8px;
-    border-top-right-radius: 8px;
-    font-weight: bold;
-  }
-  #top-search-qr-container{
-    display: block;
-    border-style: solid;
-    border-width: 0.5px;
-    border-color: rgb(228, 228, 228);
-    padding: 5px;
-    margin-right: 80px;
-  }
-  #top-search-qr-container:hover{
-    cursor: pointer;
-  }
-  #top-search-qr-container > span{
-    color:orangered;
-    margin-bottom: 2px;
-  }
-  #top-search-qr-close-container{
-    width:16px;
-    height:16px;
-    border-color: rgb(228, 228, 228);
-    border-width: 0.5px;
-    border-style: solid;
-    color: rgb(228, 228, 228);
-    font-size: var(--font-small)
-  }
-  #top-search-qr-close-container:hover{
-    cursor: pointer;
-  }
+#top-search-container {
+  width: 100%;
+  height: 80px;
+  height: 120px;
+  background: white;
+}
+.mid-main {
+  width: var(--body-width);
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+#top-search-container > .mid-main {
+  height: 74px;
+}
+#top-search-fixed-wrapper > .mid-main {
+  height: 50px;
+}
+#top-search-fixed-wrapper {
+  height: 50px;
+  width: 100%;
+  background: white;
+  z-index: 999;
+}
+/* var(--body-width); */
+#top-search {
+  text-align: center;
+}
+#top-search > div {
+  display: inline-block;
+}
+#top-search-container .img-div.logo-main {
+  margin-top: 10px;
+  /* margin-top: auto;
+  margin-bottom: auto; */
+}
+.margin-search-box-left {
+  margin-top: 4px;
+  margin-left: 100px;
+}
+#top-search-label-wrapper,
+#top-search-bottom-wrapper {
+  text-align: left;
+  margin-left: 18px;
+  color: orangered;
+}
+#top-search-bottom-wrapper {
+  margin-top: 5px;
+}
+#top-search-label-wrapper > span {
+  padding: 5px 5px 1px 5px;
+  cursor: pointer;
+}
+#top-search-label-wrapper > span:not(.selected):hover {
+  background: rgb(255, 249, 237);
+}
+#top-search-bottom-wrapper > span {
+  padding: 2px;
+  color: #3C3C3C;
+  cursor: pointer;
+  z-index: -1;
+}
+span.selected {
+  /* background:orangered; */
+  background: linear-gradient(right, orangered, orange);
+  color: white;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  font-weight: bold;
+}
+#top-search-qr-container {
+  display: block;
+  border-style: solid;
+  border-width: 0.5px;
+  border-color: rgb(228, 228, 228);
+  padding: 5px;
+  margin-right: 80px;
+}
+#top-search-qr-container:hover {
+  cursor: pointer;
+}
+#top-search-qr-container > span {
+  color: orangered;
+  margin-bottom: 2px;
+}
+#top-search-qr-close-container {
+  width: 16px;
+  height: 16px;
+  border-color: rgb(228, 228, 228);
+  border-width: 0.5px;
+  border-style: solid;
+  color: rgb(228, 228, 228);
+  font-size: var(--font-small);
+}
+#top-search-qr-close-container:hover {
+  cursor: pointer;
+}
 </style>
