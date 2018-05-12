@@ -3,17 +3,17 @@ import userApi from '../api/user'
 // initial state
 // shape: [{ id, quantity }]
 const state = {
-    isLoggedIn: false,
-    userName: null,
-    avatar: null,
-    userId: -1
+  isLoggedIn: false,
+  userName: null,
+  avatar: null,
+  userId: -1
 }
 
 // getters
 const getters = {
   checkLoginStatus: state => state.isLoggedIn,
 
-  getUserInfo: (state) => {
+  getUserInfo: state => {
     return {
       'userName': state.userName, 
       'avatar': state.avatar, 

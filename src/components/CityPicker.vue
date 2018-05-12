@@ -19,18 +19,14 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
   name: 'CityP',
   computed: {
-    cityList: function () {
-      let raw = require('../assets/data.json')['china-city'];
-      return ['0'].concat(this.tabTitle.filter( (item,idx)=>idx>0))
-      .map( letters => 
-        Array.from(letters.toLowerCase())
-        .map( l => raw[l]).filter( cities => typeof cities != 'undefined')
-        .map( group => [].concat(...group))
-      ).map( group => [].concat(...group))
-    }
+    ...mapGetters({
+      cityList: 'cityList'
+    })
   },
   data: function () {
     return {
