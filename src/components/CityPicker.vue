@@ -24,17 +24,12 @@ export default {
   computed: {
     cityList: function () {
       let raw = require('../assets/data.json')['china-city'];
-      let out = [];
-      out.push(raw.hot);
-      for (let i=1; i < this.tabTitle.length; i++){
-        out.push([]);
-        for (let j=0; j< this.tabTitle[i].length; j++){
-          let letter = this.tabTitle[i][j].toLowerCase();
-          if (typeof raw[letter] != 'undefined')
-            out[i] = out[i].concat(raw[letter]);
-        }
-      }
-      return out;
+      return ['0'].concat(this.tabTitle.filter( (item,idx)=>idx>0))
+      .map( letters => 
+        Array.from(letters.toLowerCase())
+        .map( l => raw[l]).filter( cities => typeof cities != 'undefined')
+        .map( group => [].concat(...group))
+      ).map( group => [].concat(...group))
     }
   },
   data: function () {

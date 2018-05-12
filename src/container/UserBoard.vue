@@ -3,12 +3,16 @@
     <div id = 'right-col-user-board-avatar-container' class = 'mlra avatar-medium clickable'>
       <Avatar :width="72" :height="72"/>
     </div>
+    <span v-show="isLoggedIn"> 123 </span>
     <ul id = 'right-col-user-board-tool-bars' class = 'h-list no-padding mlra'>
       <li class = 'noselect clickable'><a class = 'circle'/>领淘金抵钱</li>
       <li class = 'noselect clickable'><a class = 'circle'/>会员俱乐部</li>
     </ul>
     <ul id = 'right-col-user-board-login-controls' class = 'h-list no-padding mlra'>
-      <li><a class = 'bold noselect clickable'>登录</a></li>
+      <li><a class = 'bold noselect clickable'
+        @mousedown="postLogin"
+        >登录
+      </a></li>
       <li><a class = 'bold noselect clickable'>注册</a></li>
       <li><a class = 'bold noselect clickable'>开店</a></li>
     </ul>
@@ -16,12 +20,28 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
 import Avatar from '../components/Avatar.vue';
 
 export default {
   name: 'UserBoard',
   components: {
     Avatar
+  },
+  computed: {
+    something: () => 1 ,
+    ...mapGetters({
+      isLoggedIn: 'checkLoginStatus',
+      userInfo: 'getUserInfo'
+    })
+  },
+  methods: {
+    somemethod: () => 1,
+    ...mapActions({
+      postLogin: 'logInWithPassword'
+    })
+  },
+  mounted: function () {
   }
 }
 </script>
