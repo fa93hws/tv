@@ -11,8 +11,8 @@
           tabs:'right-col-tab-view-control',
           content:'right-col-tab-view-content'
         }"
-        :contentTemplate="contentTemplate"
-        :bindData="bindData"
+        :content-template="contentTemplate"
+        :bind-data="bindData"
       />
       </div>
   </div>

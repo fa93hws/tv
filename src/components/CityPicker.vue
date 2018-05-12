@@ -9,7 +9,8 @@
       <ul class='h-list no-margin no-padding city-picker-items'>
         <li v-for="(city,idx2) in cities" v-bind:key="idx2"
           class='city-picker-item clickable'
-          @mouseover="mouseover(city)" @mousedown="mousedown(city)"
+          @mouseover="$emit('mouseover',city)"
+          @mousedown="$emit('mousedown',city)"
         >
           {{city}}
         </li>
@@ -35,14 +36,6 @@ export default {
       tabTitle: ['热门','ABC','DEF','GHI','JKG']
     }
   },
-  methods: {
-    mousedown: function (city) {
-      this.$emit('mousedown', city)
-    },
-    mouseover: function (city) {
-      this.$emit('mouseover', city)
-    }
-  }
 }
 </script>
 
