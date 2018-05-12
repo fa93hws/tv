@@ -1,6 +1,7 @@
 <template>
   <div id = 'right-col-girds-containers'>
-    <ul class='h-list no-margin no-padding' id='grid-item-container'>
+    <ul class='h-list no-margin no-padding'
+      id='grid-item-container'>
       <li v-bind:class="['clickable', 'with-drop-down',{'selected':tabShownIdx==0}]"
         @mouseover="tabShownIdx=0"
       >
@@ -21,8 +22,11 @@
       </li>
     </ul>
     <div id = 'grid-drop-down-container'>
-      <GridDropdownControl 
-        v-for=" (detail, idx) in dropdownDetails" v-bind:key=idx
+      <!-- lazy loading -->
+      <GridDropdownControl
+        v-if="tabShownIdx>-1 || firstLoaded"
+        v-for=" (detail, idx) in dropdownDetails"
+        v-bind:key=idx
         ref="dropDownContainer"
         @onClose="tabShownIdx=-1"
         :usedComponents="detail.components"
@@ -82,17 +86,21 @@ export default {
       },{
         components: [Car1,Car2],
         tabTitles: ['车险','意外险']
-      }]
+      }],
+      firstLoaded: false
     }
   },
   watch: {
     tabShownIdx: function (after, before) {
-      if (before > -1){
-        this.$refs.dropDownContainer[before].$el.style.display = 'none';
-        this.$refs.dropDownContainer[before].tabClose();
-      }
-      if (after > -1)
-        this.$refs.dropDownContainer[after].$el.style.display = 'block';
+      this.firstLoaded = true;
+      this.$nextTick( ()=>{
+        if (before > -1){
+          this.$refs.dropDownContainer[before].$el.style.display = 'none';
+          this.$refs.dropDownContainer[before].tabClose();
+        }
+        if (after > -1)
+          this.$refs.dropDownContainer[after].$el.style.display = 'block';
+      })
     }
   },
   methods: {

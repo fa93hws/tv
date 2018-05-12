@@ -1,8 +1,11 @@
 <template>
   <v-form class = 'right-grids-dropdown-form'>
     <!-- text input -->
-    <div class = 'right-grids-dropdown-form-input input-number'>
-      <input type='number' placeholder='请输入手机号码'
+    <div 
+      class = 'right-grids-dropdown-form-input input-number'>
+      <input 
+        type='number'
+        placeholder='请输入手机号码'
         @mouseover="mouseInPhoneNumberInput=true"
         @mouseleave="mouseInPhoneNumberInput=false"
       />
@@ -15,17 +18,23 @@
       @mousedown="hideRechargeDropDown=!hideRechargeDropDown"
       ref="withDropdown"
     >
-      <input type='text' disabled id = 'right-grids-credit-recharge'
+      <input 
+        type='text'
+        disabled
+        id = 'right-grids-credit-recharge'
         :value="amounts[amountIdx]+'元'"
       />
       <v-icon
         v-bind:class="['noselect', {hovered:mouseInPhoneNumberInput}]"
       >keyboard_arrow_down</v-icon>
       <!-- select dropdown -->
-      <ul class='h-list no-margin no-padding double-column'
+      <ul
+        class='h-list no-margin no-padding double-column'
         v-bind:class="{hide:hideRechargeDropDown}"
       >
-        <li v-for="(amount, idx) in amounts" v-bind:key="idx"
+        <li
+          v-for="(amount, idx) in amounts"
+          v-bind:key="idx"
           class='noselect clickable'
           v-bind:class="{'selected':idx==amountIdx}"
           @mousedown="amountIdx=idx"

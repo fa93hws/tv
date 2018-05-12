@@ -11,9 +11,13 @@
       >
         {{title}}
       </v-tab>
-      <v-tab-item v-for="n in 4" v-bind:key="n"
+      <v-tab-item
+        v-for="n in usedComponents.length"
+        v-bind:key="n"
       >
-        <v-card ref='gridTabs' flat v-bind:is="usedComponents[n-1]">          
+        <v-card
+          ref='gridTabs'
+          v-bind:is="usedComponents[n-1]">          
         </v-card>
       </v-tab-item>
     </v-tabs>
@@ -25,10 +29,6 @@ import Vue from 'vue';
 
 export default {
   name: 'RechargeGrids',
-  created: function () {
-    for (let i=0; i < this.usedComponents.length; i++)
-      Vue.component(this.usedComponents[i].name, this.usedComponents[i]);
-  },
   props: {
     usedComponents: Array,
     tabTitles: Array

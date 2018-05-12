@@ -4,30 +4,46 @@
     ref="frame"
     v-bind:style="{height:container.height + 'px'}"
   >
-    <ul class='carousel clearfix' ref="carousel" >
+    <ul
+      class='carousel clearfix'
+      ref="carousel" >
       <li
-        v-for="(url,idx) in images" :key="idx"
+        v-for="(url,idx) in images"
+        v-bind:key="idx"
         class='slide'
         >
-        <img v-bind:src="url" 
+        <img
+          v-bind:src="url" 
           v-bind:style="{width:container.width+'px',height:container.height+'px'}"
+          @load="numImgLoaded++"
         />
       </li>
     </ul>
-    <div ref='nextButton' id = 'next-button' class = 'button button-bg'
+    <div
+      ref='nextButton'
+      id = 'next-button'
+      class = 'button button-bg'
       @mousedown="next"
     >
       <span>&#10095;</span>
     </div>
-    <div id = 'previous-button' class = 'button button-bg'
+    <div
+      id = 'previous-button'
+      class = 'button button-bg'
       @mousedown="previous"
     >
       <span>&#10094;</span>
     </div>
-    <div v-if="realOptions.jumpToolTip" ref='dir' id = 'directory' class = 'button button-bg'>
-      <div class='circle' v-bind:class="{'highlight':getIdx(activeIdx) == index }"
+    <div
+      v-show="realOptions.jumpToolTip"
+      ref='dir'
+      class = 'button button-bg carousel-tool-tip'
+    >
+      <div
+        class='circle'
+        v-bind:class="{'highlight':getIdx(activeIdx) == index }"
         v-for="(url,index) in imgurls" :key="index"
-        @mousedown="()=>{ jumpTo(activeIdx,index);}"
+        @mousedown="jumpTo(activeIdx,index)"
       >
       </div>
     </div>
@@ -37,17 +53,6 @@
 <script>
 export default {
   name: 'ImgRollover',
-  mounted: function () {
-    this.$refs.carousel.style.transform = 'translateX(-' + this.container.width + 'px' + ')';
-    this.$refs.carousel.style.width = this.container.width * (this.imgurls.length + 2) + 'px';
-    this.$refs.nextButton.style.left = this.container.width - this.$refs.nextButton.clientWidth + 'px';
-
-    this.$nextTick( ()=>{
-      if (this.realOptions.jumpToolTip)
-        this.$refs.dir.style.left = this.container.width/2 - this.$refs.dir.offsetWidth/2 + 'px';
-      this.$refs.carousel.classList.add('animated'); // add class later to prevent inital animation
-    })
-  },
   props:{
     imgurls: {
       type: Array,
@@ -78,8 +83,21 @@ export default {
   data: function () {
     return {
       activeIdx: 0,
-      inTransition: false
+      inTransition: false,
+      numImgLoaded: 0
     }
+  },
+  mounted: function () {
+    setTimeout( () => {
+      this.$refs.nextButton.style.left = this.container.width - this.$refs.nextButton.clientWidth + 'px';
+      if (this.realOptions.jumpToolTip)
+        this.$refs.dir.style.left = this.container.width/2 - this.$refs.dir.offsetWidth/2 + 'px';
+    },90)
+    this.$nextTick( ()=>{
+      this.$refs.carousel.style.transform = 'translateX(-' + this.container.width + 'px' + ')';
+      this.$refs.carousel.style.width = this.container.width * (this.imgurls.length + 2) + 'px';
+      this.$refs.carousel.classList.add('animated'); // add class later to prevent inital animation
+    })
   },
   methods: {
     previous: function () {
@@ -122,10 +140,13 @@ export default {
     }
   },
   watch: {
-    activeIdx: {
-      handler: function (after, before){
-        // console.log('child changed');
-        this.$emit('idxChanged', this.getIdx(after) ,this.getIdx(before));
+    activeIdx: function (after, before) {
+      // console.log('child changed');
+      this.$emit('idxChanged', this.getIdx(after) ,this.getIdx(before));
+    },
+    numImgLoaded: function (after, before) {
+      if (this.numImgLoaded >= this.imgurls.length+2) {
+        this.$emit('load');
       }
     }
   },
@@ -150,12 +171,12 @@ export default {
 .circle.highlight {
   background: black;
 }
-ul {
+ul.carousel {
   padding-left : 0px;
   padding-top : 0px;
   margin-top: 0px;
 }
-li {
+ul.carousel > li {
   float: left;
 }
 
@@ -192,7 +213,7 @@ li {
 .button-bg:hover {
   opacity:0.5;
 }
-#directory{
+.carousel-tool-tip {
   position: absolute;
   top: 80%;
   height: 20px;

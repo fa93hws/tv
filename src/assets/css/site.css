@@ -7,6 +7,7 @@
     --font-medium: 14px;
     --font-large: 18px;
     --font-xlarge: 22px;
+    --font-xxxlarge: 40px;
 
     --margin-xxxsmall: 2px;
     --margin-xxsmall: 5px;
@@ -88,8 +89,8 @@ body{
     width: 36px;
 }
 .avatar-medium {
-    height: 72px;
-    width: 72px;
+    height: 50px;
+    width: 50px;
 }
 .no-margin {
     /* no margin */

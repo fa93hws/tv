@@ -1,6 +1,9 @@
 <template>
   <div id = 'right-col-information-tab'>
-    <span id = 'right-col-information-tab-report' class = 'no-margin clickable'>
+    <span 
+      id = 'right-col-information-tab-report'
+      class = 'no-margin clickable'
+    >
       网上有害信息举报专区
     </span>
     <div id = 'right-col-tab-view'>
@@ -92,8 +95,9 @@ export default {
 }
 #right-col-tab-view-container >>> .tab-view-control-tab {
   width: 100%;
-  margin-top: var(--margin-xxsmall);
   font-size: var(--font-medium);
+  height: 20px;
+  line-height: 20px;
   margin-bottom: 0px;
   padding-bottom: 0px;
 }

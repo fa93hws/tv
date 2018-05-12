@@ -1,6 +1,14 @@
 <template>
-  <div ref='avatar'>
-    
+  <div 
+    ref='avatar'
+    class='avatar-container mlra'
+  >
+    <img
+      v-show="isUrlGiven"
+      :width="width"
+      :height="height"
+      :src="url"
+    />
   </div>
 </template>
 
@@ -9,7 +17,16 @@ export default {
   name: 'Avatar',
   props:{
     width: Number,
-    height: Number
+    height: Number,
+    url: {
+      type: String,
+      default: ''
+    }
+  },
+  computed: {
+    isUrlGiven: function () {
+     return typeof this.url == 'undefined' || this.url == '' ? false : true;
+    }
   },
   mounted: function () {
     this.$refs.avatar.style.width = this.width + 'px';
@@ -19,7 +36,7 @@ export default {
 </script>
 
 <style scoped>
-div {
-  background: silver;
+avatar-container {
+
 }
 </style>
