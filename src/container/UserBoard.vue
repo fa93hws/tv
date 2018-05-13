@@ -109,7 +109,7 @@ export default {
 #right-col-user-board {
   background: white;
   width: 100%;
-  height: 155px;;
+  height: 163px;
 }
 #right-col-user-board-avatar-container {
   margin-top: var(--margin-small);
@@ -169,7 +169,7 @@ a.clickable {
   display: block;
   width: 100%;
   text-align: center;
-  margin-top: var(--margin-xxxsmall);
+  margin-top: var(--margin-xxsmall);
   font-size: var(--font-small);
 }
 .right-col-user-board-pending-info-item {

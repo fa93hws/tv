@@ -93,12 +93,20 @@
 </template>
 
 <script>
+import UtilFunc from '../../assets/js/util.js';
 import CityPicker from "../../components/CityPicker";
 
 export default {
   name: "Travel1",
   components: {
     CityPicker
+  },
+  data: function() {
+    return {
+      showCityPicker: false,
+      tripType: "single",
+      cityPickerFor: "depart"
+    };
   },
   methods: {
     hideAll: function() {
@@ -113,36 +121,20 @@ export default {
       if (this.cityPickerFor == "depart") this.$refs.resultDepart.value = city;
       else this.$refs.resultArrival.value = city;
       this.showCityPicker = false;
+    },
+    documentClick: function(e) {
+      let insideArea = [this.$refs.withDropdown0, this.$refs.withDropdown1, this.$refs.dropdown];
+      if (  UtilFunc.isOutside(insideArea, e.target) ) {
+        this.showCityPicker = false;
+      }   
     }
   },
-  data: function() {
-    return {
-      showCityPicker: false,
-      tripType: "single",
-      cityPickerFor: "depart"
-    };
-  },
   mounted: function() {
-    this.$nextTick(() => {
-      document.addEventListener("click", ele => {
-        if (typeof this.$refs.withDropdown0 == "undefined") return;
-        if (typeof this.$refs.withDropdown1 == "undefined") return;
-        if (typeof this.$refs.dropDown == "undefined") return;
-        if (
-          !this.$refs.withDropdown0.contains(ele.target) &&
-          !this.$refs.withDropdown1.contains(ele.target) &&
-          !this.$refs.dropDown.contains(ele.target)
-        ) {
-          if (this.showCityPicker) this.showCityPicker = false;
-        }
-      });
-    });
+    document.addEventListener('click', this.documentClick);
+  },
+  destroyed: function() {
+    document.removeEventListener('click', this.documentClick);
   }
-  // watch: {
-  //   tripType: function () {
-  //     console.log('123');
-  //   }
-  // }
 };
 </script>
 

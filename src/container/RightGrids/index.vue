@@ -24,7 +24,10 @@
         {{item}}
       </li>
     </ul>
-    <div id = 'grid-drop-down-container'>
+    <div 
+      id = 'grid-drop-down-container'
+      ref="gridDropDownGroupContainer"
+    >
       <!-- lazy loading -->
       <GridDropdownControl
         class = 'grid-dropdown'
@@ -49,6 +52,7 @@
 
 <script>
 import GridDropdownControl from "./GridDropdownControl";
+import UtilFunc from '../../assets/js/util.js';
 import Recharge1 from "./Recharge1";
 import Recharge2 from "./Recharge2";
 import Recharge3 from "./Recharge3";
@@ -62,9 +66,6 @@ import Car2 from "./Car2";
 
 export default {
   name: "RightGrids",
-  mounted: function() {
-    // console.log(this.dropdownDetails)
-  },
   components: {
     GridDropdownControl
   },
@@ -121,20 +122,20 @@ export default {
       });
     }
   },
-  mounted: function() {
-    // console.log(this.$refs);
-    // // define close funciont
-    // const closeDropdown = ele => {
-    //   const notInEle = document.getElementById("right-col-girds-containers");
-    //   if (typeof notInEle == "undefined") return;
-    //   if (!notInEle.contains(ele.target)) {
-    //     this.tabShownIdx = -1;
-    //   }
-    // };
-    // // regisiter in document event listener
-    // document.addEventListener("click", closeDropdown);
+  methods: {
+    documentClick: function(e) {
+      let insideArea = [this.$refs.gridDropDownGroupContainer, this.$refs.withDropDown];
+      if (  UtilFunc.isOutside(insideArea, e.target) ) {
+        this.tabShownIdx = -1;
+      }   
+    }
   },
-  beforeDestroy: function() {}
+  mounted: function() {
+    document.addEventListener('click', this.documentClick);
+  },
+  destroyed: function() {
+    document.removeEventListener('click', this.documentClick);
+  }
 };
 </script>
 
@@ -161,10 +162,13 @@ export default {
   border-color: #f5f5f5;
   background: white;
 }
+#grid-item-container > li:hover {
+  color: orangered;
+}
 #grid-item-container > li.selected {
   border-bottom: none;
   border-color: orangered;
-
+  color: orangered;
   z-index: 2;
 }
 /* drop down */

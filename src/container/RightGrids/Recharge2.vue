@@ -14,13 +14,10 @@
     <div id='right-grids-recharge-data-option-wrapper'
       class = 'right-grids-dropdown-form-input'
     >
-      <select id = 'right-grids-recharge-data-option'>
-        <option>全国流量</option>
-        <option>本地流量</option>
-      </select>
-      <v-icon
-        v-bind:class="['noselect', {hovered:mouseInPhoneNumberInput}]"
-      >keyboard_arrow_down</v-icon>
+    <select id = 'right-grids-recharge-data-option'>
+      <option>全国流量</option>
+      <option>本地流量</option>
+    </select>
     </div>
     <!-- amout -->
     <div class = 'right-grids-dropdown-form-input combobox half-length'
@@ -51,18 +48,9 @@
 </template>
 
 <script>
+import UtilFunc from '../../assets/js/util.js';
 export default {
   name: "Recharge2",
-  mounted: function() {
-    this.$nextTick(() => {
-      document.addEventListener("click", ele => {
-        if (typeof this.$refs.withDropdown == "undefined") return;
-        if (!this.$refs.withDropdown.contains(ele.target)) {
-          if (!this.hideRechargeDropDown) this.hideRechargeDropDown = true;
-        }
-      });
-    });
-  },
   data: function() {
     return {
       phoneNumber: "",
@@ -73,8 +61,22 @@ export default {
     };
   },
   methods: {
-    hideAll: function() {}
-  }
+    hideAll: function() {
+      this.hideRechargeDropDown = true;
+    },
+    documentClick: function(e) {
+      let insideArea = [this.$refs.withDropdown];
+      if (  UtilFunc.isOutside(insideArea, e.target) ) {
+        this.hideAll();
+      }   
+    }
+  },
+  mounted: function() {
+    document.addEventListener('click', this.documentClick);
+  },
+  destroyed: function() {
+    document.removeEventListener('click', this.documentClick);
+  },
 };
 </script>
 
@@ -88,7 +90,7 @@ export default {
   width: 84px;
 }
 #right-grids-recharge-data-option-wrapper > select {
-  width: 70%;
+  width: 95%;
 }
 .half-length.right-grids-dropdown-form-input {
   display: inline-block;
@@ -102,6 +104,9 @@ export default {
   width: 70%;
   vertical-align: top;
 }
+.right-grids__select-label > i {
+  font-size: var(--font-small);
+}
 ul.h-list.double-column {
   width: 85px;
   left: 83px;
@@ -114,9 +119,6 @@ ul.double-column.h-list > li:nth-last-child(2) {
   border-bottom: none;
 }
 ul.h-list.double-column > li > span {
-  display: inline-block;
-  margin-left: 0px;
-  margin-right: 0px;
   font-size: var(--font-small);
   margin-left: 5%;
   margin-right: 5%;

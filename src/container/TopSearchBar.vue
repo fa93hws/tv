@@ -173,7 +173,8 @@ export default {
   margin-top: 5px;
 }
 #top-search-label-wrapper > span {
-  padding: 5px 5px 1px 5px;
+  display: inline-block;
+  padding: 5px 7px 0px 7px;
   cursor: pointer;
 }
 #top-search-label-wrapper > span:not(.selected):hover {

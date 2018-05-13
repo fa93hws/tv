@@ -2,7 +2,7 @@
   <v-form class = 'right-grids-dropdown-form'>
     <!-- citypicker -->
     <div class = 'right-grids-dropdown-form-input'
-      @mousedown="hideDataPicker=!hideDataPicker"
+      @mousedown="hideDataPicker=!hideDataPicker,hideRechargeDropDown=true"
       ref="withDropdown0"
     >
       <input type='text' disabled id = 'right-grids-credit-recharge'
@@ -47,7 +47,7 @@
     <!-- end of account input -->
     <!-- price -->
     <div class = 'right-grids-dropdown-form-input combobox'
-      @mousedown="hideRechargeDropDown=!hideRechargeDropDown"
+      @mousedown="hideRechargeDropDown=!hideRechargeDropDown, hideDataPicker=true"
       ref="withDropdown1"
     >
       <input type='text' disabled id = 'right-grids-credit-recharge'
@@ -75,6 +75,7 @@
 </template>
 
 <script>
+import UtilFunc from '../../assets/js/util.js';
 import CityPicker from "../../components/CityPicker.vue";
 
 export default {
@@ -82,36 +83,6 @@ export default {
   components: {
     CityPicker
   },
-  mounted: function() {
-    this.$nextTick(() => {
-      document.addEventListener("click", ele => {
-        if (typeof this.$refs.withDropdown0 == "undefined") return;
-        if (typeof this.$refs.dropDown0 == "undefined") return;
-        if (
-          !this.$refs.withDropdown0.contains(ele.target) &&
-          !this.$refs.dropDown0.contains(ele.target)
-        ) {
-          if (!this.hideDataPicker) this.hideDataPicker = true;
-        }
-      });
-      document.addEventListener("click", ele => {
-        if (typeof this.$refs.withDropdown1 == "undefined") return;
-        if (!this.$refs.withDropdown1.contains(ele.target)) {
-          if (!this.hideRechargeDropDown) this.hideRechargeDropDown = true;
-        }
-      });
-    });
-  },
-  methods: {
-    hideAll: function() {
-      this.hideDataPicker = true;
-    },
-    cityChosen: function(city) {
-      this.$refs.result.value = ["电信", "联通"][this.provider] + "/" + city;
-      this.hideDataPicker = true;
-    }
-  },
-  computed: {},
   data: function() {
     return {
       hideDataPicker: true,
@@ -122,7 +93,29 @@ export default {
       amounts: [100, 10, 200, 20, 300, 30, 500, 50, 1000],
       hideRechargeDropDown: true
     };
-  }
+  },
+  methods: {
+    hideAll: function() {
+      this.hideDataPicker = true;
+      this.hideRechargeDropDown = true;
+    },
+    cityChosen: function(city) {
+      this.$refs.result.value = ["电信", "联通"][this.provider] + "/" + city;
+      this.hideDataPicker = true;
+    },
+    documentClick: function(e) {
+      let insideArea = [this.$refs.withDropdown0, this.$refs.dropDown0, this.$refs.withDropdown1];
+      if (  UtilFunc.isOutside(insideArea, e.target) ) {
+        this.hideAll();
+      }   
+    }
+  },
+  mounted: function() {
+    document.addEventListener('click', this.documentClick);
+  },
+  destroyed: function() {
+    document.removeEventListener('click', this.documentClick);
+  },
 };
 </script>
 <style scoped>

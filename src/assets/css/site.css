@@ -7,7 +7,7 @@
     --font-medium: 14px;
     --font-large: 16px;
     --font-xlarge: 22px;
-    --font-xxxlarge: 40px;
+    --font-xxxlarge: 28px;
 
     --margin-xxxsmall: 2px;
     --margin-xxsmall: 5px;
@@ -52,16 +52,9 @@ body{
 .float-left{
     float:left;
 }
-.float-left{
-    float:left;
-}
 .float-right{
     float:right;
 }
-/* .float-right>li:first-child ul{
-    right:4px;
-    left:auto;
-} */
 .show{
     display:block;
 }
@@ -71,7 +64,7 @@ body{
 .h-list > li {
     display: inline-block;
 }
-.cursor-normal{
+.cursor-normal {
     cursor: auto;
 }
 .fixed-top{
@@ -133,4 +126,13 @@ input[type="date"]::-webkit-clear-button {
     font-size: 0px;
     min-height: 0px;
     height: 0px;
+}
+select:focus {
+    outline: none;
+}
+.no-bottom-margin {
+    margin-bottom: 0px;
+}
+.overflow-hidden {
+    overflow: hidden;
 }

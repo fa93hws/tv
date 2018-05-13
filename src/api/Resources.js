@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const Resources = {
+export default {
   baseUrl: 'https://www.easy-mock.com/mock/5af68f27eecc191f0f5604a0/tv/api/',
   getUpperCarouselImages: function () {
     return axios({
@@ -21,5 +21,3 @@ const Resources = {
     })
   }
 }
-
-export default Resources;

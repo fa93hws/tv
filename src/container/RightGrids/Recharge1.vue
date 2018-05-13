@@ -49,6 +49,8 @@
 </template>
 
 <script>
+import UtilFunc from '../../assets/js/util.js';
+
 export default {
   name: "Recharge1",
   data: function() {
@@ -60,26 +62,23 @@ export default {
       hideRechargeDropDown: true
     };
   },
-  mounted: function() {
-    this.$nextTick(() => {
-      document.addEventListener("click", ele => {
-        if (typeof this.$refs.withDropdown == "undefined") return;
-        if (typeof this.$refs.dropDown == "undefined") return;
-        if (
-          !this.$refs.withDropdown.contains(ele.target) &&
-          !this.$refs.dropDown.contains(ele.target)
-        ) {
-          if (!this.hideDataPicker) this.hideDataPicker = true;
-        }
-      });
-    });
-  },
   methods: {
     hideAll: function() {
       this.hideRechargeDropDown = true;
+    },
+    documentClick: function(e) {
+      let insideArea = [this.$refs.withDropdown, this.$refs.dropdown];
+      if (  UtilFunc.isOutside(insideArea, e.target) ) {
+        this.hideAll();
+      }   
     }
   },
-  watch: {}
+  mounted: function() {
+    document.addEventListener('click', this.documentClick);
+  },
+  destroyed: function() {
+    document.removeEventListener('click', this.documentClick);
+  },
 };
 </script>
 

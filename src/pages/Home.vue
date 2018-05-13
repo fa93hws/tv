@@ -22,6 +22,37 @@
     <div id = 'main-content-container'>
       <LeftDrawer />
       <CenterImageCarousels />
+      <div class = 'container__mid-images-column'>
+        <div class='empty-element'></div>
+        <LoadingMask
+          v-if="!imgColumnUpperLoad"
+          class = 'image-wrapper__mid-images-column--upper'
+        />
+        <div
+          v-show="imgColumnUpperLoad"
+          class = 'image-wrapper__mid-images-column--upper clickable overflow-hidden'
+        >
+          <img
+            src='http://dummyimage.com/155x250'
+            @load="imgColumnUpperLoad=true"
+          />
+        </div>
+        <p class = 'text__mid-images-column no-padding no-bottom-margin'>
+          今日特卖
+        </p>
+        <LoadingMask
+          v-if="!imgColumnLowerLoad"
+          class = 'image-wrapper__mid-images-column--lower'
+        />
+        <div
+          v-show="imgColumnLowerLoad"
+          class = 'image-wrapper__mid-images-column--lower clickable overflow-hidden'>
+          <img
+            src='http://dummyimage.com/155x215'
+            @load="imgColumnLowerLoad=true"
+          />
+        </div>
+      </div>
       <div id = 'main-right-column'>
         <UserBoard />
         <InformationTab />
@@ -38,6 +69,7 @@ import CenterImageCarousels from "../container/CenterImageCarousels.vue";
 import UserBoard from "../container/UserBoard.vue";
 import InformationTab from "../container/InformationTab.vue";
 import RightGrids from "../container/RightGrids/index.vue";
+import LoadingMask from '../components/LoadingMask';
 
 export default {
   name: "Home",
@@ -47,7 +79,8 @@ export default {
     CenterImageCarousels,
     UserBoard,
     InformationTab,
-    RightGrids
+    RightGrids,
+    LoadingMask
   },
   data: function() {
     return {
@@ -66,7 +99,9 @@ export default {
         "智能生活",
         "苏宁易购"
       ],
-      thHoverIdx: -1
+      thHoverIdx: -1,
+      imgColumnUpperLoad: false,
+      imgColumnLowerLoad: false
     };
   },
   watch: {
@@ -156,6 +191,7 @@ a.vertical-line {
   width: var(--body-width);
   margin-left: auto;
   margin-right: auto;
+  /* background: black; */
 }
 #main-content-container > div {
   display: inline-block;
@@ -163,8 +199,31 @@ a.vertical-line {
 }
 #main-right-column {
   margin-top: var(--margin-small);
-  margin-left: var(--margin-medium);
+  margin-left: var(--margin-small);
 
   width: 288px;
+}
+/* mid image column */
+.container__mid-images-column {
+  width: 155px;
+  height: 100%;
+  margin-left: var(--margin-small);
+}
+.image-wrapper__mid-images-column--upper {
+  margin-top: var(--margin-small);
+  border-color: black;
+  width: 100%;
+  height: 250px;
+}
+.image-wrapper__mid-images-column--lower {
+  margin-top: var(--margin-xsmall);
+  border-color: black;
+  width: 100%;
+  height: 215px;
+}
+.text__mid-images-column {
+  font-size: var(--font-small);
+  margin-top: var(--margin-small);
+  color: grey;
 }
 </style>
