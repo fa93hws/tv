@@ -108,8 +108,8 @@ export default {
 #right-col-information-tab-report > span,
 #right-col-information-tab-report > .icon {  
   color: orangered;
-  line-height: 25px;
-  height: 25px;
+  line-height: px;
+  height: px;
 }
 #right-col-information-tab-report > span {
   width: 50%;

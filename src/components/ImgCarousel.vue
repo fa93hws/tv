@@ -96,13 +96,6 @@ export default {
     };
   },
   mounted: function() {
-    setTimeout(() => {
-      this.$refs.nextButton.style.left =
-        this.container.width - this.$refs.nextButton.clientWidth + "px";
-      if (this.realOptions.jumpToolTip)
-        this.$refs.dir.style.left =
-          this.container.width / 2 - this.$refs.dir.offsetWidth / 2 + "px";
-    }, 1000);
     this.$nextTick(() => {
       this.$refs.carousel.style.transform =
         "translateX(-" + this.container.width + "px" + ")";
@@ -148,6 +141,15 @@ export default {
     getIdx: function(activeIdx) {
       if (activeIdx >= 0) return activeIdx % this.imgurls.length;
       else return activeIdx % this.imgurls.length + this.imgurls.length;
+    },
+    setPositionForControls: function() {
+      this.$nextTick( () => {
+        this.$refs.nextButton.style.left =
+          this.container.width - this.$refs.nextButton.clientWidth + "px";
+        if (this.realOptions.jumpToolTip)
+          this.$refs.dir.style.left =
+            this.container.width / 2 - this.$refs.dir.offsetWidth / 2 + "px";
+        })
     }
   },
   watch: {
@@ -158,6 +160,7 @@ export default {
     numImgLoaded: function(after, before) {
       if (this.numImgLoaded >= this.imgurls.length + 2) {
         this.$emit("load");
+        this.setPositionForControls();
       }
     }
   }

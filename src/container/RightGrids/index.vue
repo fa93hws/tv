@@ -1,7 +1,9 @@
 <template>
   <div id = 'right-col-girds-containers'>
     <div class='empty-element'>&nbsp;</div>
-    <ul class='h-list no-margin no-padding'
+    <ul
+      ref="withDropDown"
+      class='h-list no-margin no-padding'
       id='grid-item-container'>
       <li v-bind:class="['clickable', 'with-drop-down',{'selected':tabShownIdx==0}]"
         @mouseover="tabShownIdx=0"
@@ -119,7 +121,20 @@ export default {
       });
     }
   },
-  methods: {}
+  mounted: function() {
+    // console.log(this.$refs);
+    // // define close funciont
+    // const closeDropdown = ele => {
+    //   const notInEle = document.getElementById("right-col-girds-containers");
+    //   if (typeof notInEle == "undefined") return;
+    //   if (!notInEle.contains(ele.target)) {
+    //     this.tabShownIdx = -1;
+    //   }
+    // };
+    // // regisiter in document event listener
+    // document.addEventListener("click", closeDropdown);
+  },
+  beforeDestroy: function() {}
 };
 </script>
 
@@ -144,12 +159,12 @@ export default {
   border-style: solid;
   border-width: 1px;
   border-color: #f5f5f5;
-  background:white;
+  background: white;
 }
 #grid-item-container > li.selected {
   border-bottom: none;
   border-color: orangered;
-  
+
   z-index: 2;
 }
 /* drop down */
