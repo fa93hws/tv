@@ -1,8 +1,10 @@
 <template>
-  <div id='left-drawer-main-content'>
+  <div class = 'container__left-drawer-content'>
     <p> {{title}} </p>
-    <ul>
-      <li v-for="(text,index) in texts" v-bind:key=index
+    <ul class = 'list__left-drawer-content'>
+      <li
+        class = 'list-item__left-drawer-content'
+        v-for="(text,index) in texts" v-bind:key=index
       >
         {{text}}
       </li>
@@ -21,15 +23,15 @@ export default {
 </script>
 
 <style scoped>
-p {
-  margin-top: var(--margin-xsmall);
+.container__left-drawer-content > p {
+  margin-top: var(--margin-small);
   margin-left: var(--margin-medium);
   font-weight: bold;
 }
-ul {
+.list__left-drawer-content {
   padding-left: var(--margin-medium);
 }
-li {
+.list-item__left-drawer-content {
   font-size: var(--font-small);
   line-height: var(--font-xlarge);
   display: inline-block;

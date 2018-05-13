@@ -7,7 +7,8 @@
     --font-medium: 14px;
     --font-large: 16px;
     --font-xlarge: 22px;
-    --font-xxxlarge: 28px;
+    --font-xxlarge: 28px;
+    --font-xxxlarge: 34px;
 
     --margin-xxxsmall: 2px;
     --margin-xxsmall: 5px;
@@ -105,6 +106,7 @@ body{
   }
 .clickable {
     cursor: pointer;
+    user-select: none;
 }
 input[type="text"] {
     background: transparent;
@@ -135,4 +137,8 @@ select:focus {
 }
 .overflow-hidden {
     overflow: hidden;
+}
+.button {
+    cursor: pointer;
+    user-select: none;
 }

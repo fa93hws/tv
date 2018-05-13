@@ -18,21 +18,25 @@
         </li>
       </ul>
     </div>
-    <div ref = 'contentWrapper' id = 'left-drawer-content-container'
-      class = 'solid-border hide'
-      @mouseover="()=>{this.mouseInContent=true}"
-      @mouseleave="()=>{this.mouseInContent=false}"
+    <div
+      v-show="showDrawer"
+      ref = 'contentWrapper'
+      id = 'left-drawer-content-container'
+      class = 'solid-border'
+      @mouseover="mouseInContent=true"
+      @mouseleave="mouseInContent=false"
     >
-      <div id = 'left-drawer-main-content-wrapper'>
+      <div class = 'container__left-drawer-main-content'>
         <LeftDrawTextContent
-          v-for="(content,index) in textContent" v-bind:key=index
+          v-for="(content,index) in textContent"
+          v-bind:key=index
           :title = content.title
           :texts = content.texts
         />
       </div>
       <div ref = 'guessContent' id = 'left-drawer-content-wrapper-guess'>
-        <span>猜你喜欢</span>
-        <div id = 'left-drawer-content-guess-imgcontainer'>
+        <span class = 'text__left-drawer-guess'>猜你喜欢</span>
+        <div class = 'img-wrapper_left-drawer-guess'>
           <img v-bind:src="mouseOnMenuIdx>-1 ? guessYouLike[mouseOnMenuIdx].url : ''"/>
         </div>
         <span>{{mouseOnMenuIdx>-1 ? guessYouLike[mouseOnMenuIdx].desc : ''}}</span>
@@ -48,6 +52,11 @@ export default {
   name: "LeftDrawer",
   components: {
     LeftDrawTextContent
+  },
+  computed: {
+    showDrawer: function() {
+      return this.mouseInMenu || this.mouseInContent;
+    }
   },
   data: function() {
     return {
@@ -241,7 +250,7 @@ export default {
         { title: "a", texts: [] },
         { title: "b", texts: [] },
         { title: "c", texts: [] }
-      ]
+      ],
     };
   },
   methods: {
@@ -272,16 +281,10 @@ export default {
         this.textContent[i].texts = texts;
       }
     },
-    mouseInMenu: function(after, before) {
-      this.isContentShown = after || this.mouseInContent;
-    },
-    mouseInContent: function(after, before) {
-      this.isContentShown = this.mouseInMenu || after;
-    },
-    isContentShown: function(after, before) {
-      if (after) this.$refs.contentWrapper.style.display = "inline-block";
-      else this.$refs.contentWrapper.style.display = "none";
-    }
+    // isContentShown: function(after, before) {
+    //   if (after) this.$refs.contentWrapper.style.display = "inline-block";
+    //   else this.$refs.contentWrapper.style.display = "none";
+    // }
   }
 };
 </script>
@@ -336,11 +339,12 @@ li {
   top: 0px;
   z-index: 300;
 }
-#left-drawer-main-content-wrapper {
+.container__left-drawer-main-content {
   display: inline-block;
   vertical-align: top;
   width: 60%;
   height: 100%;
+  padding-right: 5%;
   border-style: solid;
   border-top: none;
   border-bottom: none;
@@ -348,7 +352,7 @@ li {
   border-color: rgb(236, 236, 236);
   border-width: 1px;
 }
-#left-drawer-main-content-wrapper > div {
+.container__left-drawer-main-content > div {
   /* display: inline-block; */
   /* border-style:solid; */
   width: 100%;
@@ -371,5 +375,12 @@ li {
   line-height: 40px;
   font-size: var(--font-medium);
   margin-right: var(--margin-xxsmall);
+}
+.text__left-drawer-guess {
+  display: block;
+  margin-top: var(--margin-small);
+}
+.img-wrapper_left-drawer-guess {
+  margin-top: var(--margin-small);
 }
 </style>

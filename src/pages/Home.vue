@@ -22,7 +22,10 @@
     <div id = 'main-content-container'>
       <LeftDrawer />
       <CenterImageCarousels />
-      <div class = 'container__mid-images-column'>
+      <div
+        v-show="showImgColumn"
+        class = 'container__mid-images-column'
+      >
         <div class='empty-element'></div>
         <LoadingMask
           v-if="!imgColumnUpperLoad"
@@ -48,7 +51,7 @@
           v-show="imgColumnLowerLoad"
           class = 'image-wrapper__mid-images-column--lower clickable overflow-hidden'>
           <img
-            src='http://dummyimage.com/155x215'
+            src='http://dummyimage.com/155x222'
             @load="imgColumnLowerLoad=true"
           />
         </div>
@@ -101,8 +104,18 @@ export default {
       ],
       thHoverIdx: -1,
       imgColumnUpperLoad: false,
-      imgColumnLowerLoad: false
+      imgColumnLowerLoad: false,
+      showImgColumn: true,
+      bodyWidth: document.getElementsByTagName('body')[0].clientWidth,
     };
+  },
+  mounted: function() {
+    window.addEventListener('resize', this.onWindowResize);
+  },
+  methods: {
+    onWindowResize: function() {
+      this.bodyWidth = document.getElementsByTagName('body')[0].clientWidth
+    }
   },
   watch: {
     thHoverIdx: {
@@ -115,6 +128,12 @@ export default {
           this.$refs.thHat[after + 1].classList.remove("hide");
         this.$refs.thHat[after + 1].classList.add("show");
       }
+    },
+    bodyWidth: function(after, before) {
+      if ( before >=1190 && after < 1190 )
+        this.showImgColumn = false;
+      else if (before < 1190 && after > 1190)
+        this.showImgColumn = true;
     }
   }
 };
@@ -216,14 +235,14 @@ a.vertical-line {
   height: 250px;
 }
 .image-wrapper__mid-images-column--lower {
-  margin-top: var(--margin-xsmall);
+  margin-top: var(--margin-xxxsmall);
   border-color: black;
   width: 100%;
-  height: 215px;
+  height: 222px;
 }
 .text__mid-images-column {
   font-size: var(--font-small);
-  margin-top: var(--margin-small);
+  margin-top: 16px;
   color: grey;
 }
 </style>

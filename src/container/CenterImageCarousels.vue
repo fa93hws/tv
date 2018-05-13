@@ -1,7 +1,7 @@
 <template>
   <div>
     <LoadingMask
-      v-show="!loadStatus.upper.loadDone"
+      v-if="!loadStatus.upper.loadDone"
       key="upper-loading"
       class='upper-carousel-container'
     />
@@ -9,25 +9,32 @@
       v-show="loadStatus.upper.loadDone"
       v-if="loadStatus.upper.ajaxDone"
       key="upper-ready"
-      class='upper-carousel-container'
+      class='upper-carousel-container clickable'
       :imgurls="upperImgCarousel.url"
       :container="upperImgCarousel.style"
+      :options="upperImgCarousel.options"
       @load="loadStatus.upper.loadDone=true"
     />
     <div
       key="lower-ready"
       class = 'lower-img-carousel'>
-      <span>猫Logo</span>
-      <span>天猫Logo</span>
-      <span>理想生活上天猫</span>
-      <span
-        v-if="loadStatus.lower.loadDone"
-        class = 'float-right'
-      >
-        {{lowerImgIdx+1}}/{{ lowerImgCarousel.url.length }}
-      </span>
-      <ul class='no-padding no-margin'>
+      <div class = 'container__lower-imgcarousel-text'>
+        <div class = 'container__lower-imgcarousel-text--left'>
+          <span>猫Logo</span>
+          <span>天猫Logo</span>
+          <span>理想生活上天猫</span>
+        </div>
+        <div
+          v-if="loadStatus.lower.loadDone"
+          class = 'counter__lower-imgcarousel--right'
+        >
+          <span>{{lowerImgIdx+1}}</span>
+          <span>/ {{ lowerImgCarousel.url.length }}</span>
+        </div>
+      </div>
+      <ul class='tooltip__lower-imgcarousel no-padding no-margin'>
         <li
+          class = 'tooltip-item__lower-imgcarousel'
           ref="lowerCarouselJumpControllerPiece"
           v-for="(url,idx) in lowerImgCarousel.url" v-bind:key="idx"
           v-bind:class="{'selected':lowerImgIdx===idx}"
@@ -40,7 +47,7 @@
         class='lower-img-carousel-container'
       />
       <ImgCarousel
-        class='lower-carousel-container'
+        class='lower-carousel-container clickable'
         v-show="loadStatus.lower.loadDone"
         v-if="loadStatus.lower.ajaxDone"
         ref="lowerCarousel"
@@ -72,16 +79,18 @@ export default {
           width: 500,
           height: 250
         },
-        url: []
+        url: [],
+        options: {
+        }
       },
       lowerImgCarousel: {
         style: {
           width: 500,
-          height: 215
+          height: 222
         },
         url: [],
         options: {
-          junpToolTip: false
+          jumpToolTip: false
         }
       },
       lowerImgIdx: 0,
@@ -122,7 +131,6 @@ export default {
         // console.log(error)
       });
   },
-  mounted: function() {},
   methods: {
     lowerIdxChange: function(after, before) {
       this.lowerImgIdx = after;
@@ -137,8 +145,8 @@ export default {
       spans.forEach( (el) => {
         el.style.width = 100/spans.length + '%'
       })
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -156,28 +164,58 @@ export default {
 .lower-img-carousel {
   margin-left: var(--margin-small);
   margin-top: var(--margin-small);
-  width: 500px;
+  width: 500px;  
 }
-.lower-img-carousel > span {
+.lower-img-carousel-container {
+  width: 500px;
+  height: 222px;
+}
+/* lower image carousel text on toolbar */
+.container__lower-imgcarousel-text {
+  /* position: relative; */
+}
+/* left */
+.container__lower-imgcarousel-text--left {
+  display: inline-block;
+  width: 50%;
+}
+.container__lower-imgcarousel-text--left > span {
+  display: inline-block;
+  height: 100%;
   margin-left: var(--margin-xxsmall);
   margin-right: var(--margin-xxsmall);
   font-size: var(--font-small);
 }
-.lower-img-carousel-container {
-  width: 500px;
-  height: 215px;
-}
-ul {
-  font-size: 0px;
-  height: 10px;
-}
-li {
+/* right */
+.counter__lower-imgcarousel--right {
   display: inline-block;
+  position: relative;
+  width: 30px;
+  text-align: left;
+  left: 50%;
+  transform: translateX(-100%);
+  top: 2px;
+}
+.counter__lower-imgcarousel--right > span:first-child {
+  color: orangered;
+}
+.counter__lower-imgcarousel--right > span {
+  display: inline-block;
+  font-size: var(--font-small)
+}
+.tooltip__lower-imgcarousel {
+  margin-top: -1px;
+  font-size: 0px;
+  height: 5px;
+}
+.tooltip-item__lower-imgcarousel {
+  display: inline-block;
+  margin-top: 0px;
   background: orangered;
   cursor: pointer;
   height: 10px;
 }
-li.selected {
+.tooltip-item__lower-imgcarousel.selected {
   background: black;
 }
 </style>

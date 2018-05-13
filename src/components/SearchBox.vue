@@ -19,7 +19,7 @@
       <input type="text" :placeholder="placeHolder">
     </div>
     <div class = 'button-wrapper float-right'>
-      <span class = 'bold'> 搜索 </span>
+      <span class = 'bold clickable noselect'> 搜索 </span>
     </div>
   </div>
 </template>
