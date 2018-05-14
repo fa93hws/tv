@@ -156,7 +156,7 @@ export default {
   text-align: center;
   font-size: var(--font-medium);
   margin-top: -1px;
-  margin-left: -1px;
+  /* margin-left: -1px; */
   border-style: solid;
   border-width: 1px;
   border-color: #f5f5f5;
@@ -176,8 +176,8 @@ export default {
   display: none;
   position: absolute;
   top: 83px;
-  left: -1px;
-  width: 289px;
+  left: 0px;
+  width: 292px;
   height: 149px;
   border-style: solid;
   border-width: 1px;

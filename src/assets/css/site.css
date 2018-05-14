@@ -142,3 +142,6 @@ select:focus {
     cursor: pointer;
     user-select: none;
 }
+.full-width {
+    width: 100%;
+}

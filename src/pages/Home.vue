@@ -1,66 +1,69 @@
 <template>
-  <div id = 'home-main-container'>
-    <TopSearchBar />
-    <div id = 'main-content-th-wrapper'>
-      <ul id = 'main-content-th'>        
-        <li 
+  <div class='home'>
+    <TopSearchBar class='home-search'/>
+    <div class = 'home-head mlra'>
+      <!-- id = 'main-content-th-wrapper' -->
+      <ul class = 'home-head-list'>        
+        <li
+          class = 'home-head-list-item'
           v-for="(text,index) in headTexts" v-bind:key=index
-          @mouseover="thHoverIdx=index-1"
-          @mouseleave="thHoverIdx=-1"
         >
-          <div class = 'vertical-stack'>            
-            <div>
-              <a v-bind:class="['th-text bold', {'cursor-normal vertical-line':text=='|'}]">
-                {{text}}
-              </a>
-            </div>
-            <div><span ref="thHat" class = 'hide orangered-text'>屎</span></div>
-          </div>
+          <span
+            @mouseover="thHoverIdx=index-1"
+            @mouseleave="thHoverIdx=-1"
+            v-bind:class="['bold', {'cursor-normal home-head-list-item--vertical-line':text=='|'}]">
+            {{text}}
+          </span>
+          <span 
+            ref="thHat"
+            v-show="thHoverIdx==index-1&&text!='|'"
+          >
+            屎
+          </span>
         </li>
       </ul>
-    </div>
-    <div id = 'main-content-container'>
-      <LeftDrawer />
-      <CenterImageCarousels />
+    <div class = 'home-main'>
+      <LeftDrawer class = 'home-main-column home-main-nav'/>
+      <CenterImageCarousels class = 'home-main-column home-main-banners' />
       <div
         v-show="showImgColumn"
-        class = 'container__mid-images-column'
+        class = 'home-main-column home-main-advs'
       >
-        <div class='empty-element'></div>
         <LoadingMask
           v-if="!imgColumnUpperLoad"
-          class = 'image-wrapper__mid-images-column--upper'
+          class = 'home-main-advs-upper'
         />
         <div
           v-show="imgColumnUpperLoad"
-          class = 'image-wrapper__mid-images-column--upper clickable overflow-hidden'
+          class = 'home-main-advs-upper clickable overflow-hidden'
         >
           <img
             src='http://dummyimage.com/155x250'
             @load="imgColumnUpperLoad=true"
           />
         </div>
-        <p class = 'text__mid-images-column no-padding no-bottom-margin'>
+        <p class = 'home-main-advs-text no-padding no-bottom-margin'>
           今日特卖
         </p>
         <LoadingMask
           v-if="!imgColumnLowerLoad"
-          class = 'image-wrapper__mid-images-column--lower'
+          class = 'home-main-advs-lower'
         />
         <div
           v-show="imgColumnLowerLoad"
-          class = 'image-wrapper__mid-images-column--lower clickable overflow-hidden'>
+          class = 'home-main-advs-lower clickable overflow-hidden'>
           <img
             src='http://dummyimage.com/155x222'
             @load="imgColumnLowerLoad=true"
           />
         </div>
       </div>
-      <div id = 'main-right-column'>
+      <div class = 'home-main-column home-main-others'>
         <UserBoard />
         <InformationTab />
         <RightGrids />
       </div>
+    </div>
     </div>
   </div>
 </template>
@@ -118,17 +121,6 @@ export default {
     }
   },
   watch: {
-    thHoverIdx: {
-      handler: function(after, before) {
-        if (before > -1 && this.headTexts[before + 1] !== "|") {
-          this.$refs.thHat[before + 1].classList.remove("show");
-          this.$refs.thHat[before + 1].classList.add("hide");
-        }
-        if (after > -1 && this.headTexts[after + 1] !== "|")
-          this.$refs.thHat[after + 1].classList.remove("hide");
-        this.$refs.thHat[after + 1].classList.add("show");
-      }
-    },
     bodyWidth: function(after, before) {
       if ( before >=1190 && after < 1190 )
         this.showImgColumn = false;
@@ -139,110 +131,101 @@ export default {
 };
 </script>
 
-<style scoped>
-#main-content-th-wrapper {
-  height: 40px;
-  width: 100%;
+<style lang='less' scoped>
+@shitHeight: 10px;
+@headHeight: 30px;
+@totalHeight: @shitHeight + @headHeight;
+.shit-block-gradient(@color) {
   background: linear-gradient(
     to top,
-    rgb(255, 145, 0) 0%,
-    rgb(255, 145, 0) 75%,
-    white 75%,
-    white 100%
-  );
-  /* background: orangered; */
-  line-height: 30px;
+    @color 0%,
+    @color @headHeight,
+    white @shitHeight,
+    white @totalHeight
+  )
 }
-#main-content-th {
-  height: 40px;
-  padding: 0px;
-  width: var(--body-width);
-  margin-left: auto;
-  margin-right: auto;
-  color: white;
-  display: flex;
-  flex-direction: row;
-}
-.vertical-stack {
-  display: flex;
-  flex-direction: column-reverse;
-  line-height: 30px;
-}
-.vertical-stack > div:first-child {
-  height: 30px;
-}
-.vertical-stack > div:nth-child(2) {
-  height: 10px;
-}
-.vertical-stack > div > span {
-  line-height: 8px;
-  font-size: var(--font-small);
-}
-a.vertical-line {
-  font-size: var(--font-xlarge);
-  line-height: 25px;
-}
-#main-content-th > li {
-  font-size: var(--font-large);
-  text-align: center;
-}
-#main-content-th > li:first-child {
-  vertical-align: top;
-  height: 40px;
-  background: linear-gradient(
-    to top,
-    orangered 0%,
-    orangered 75%,
-    white 75%,
-    white 100%
-  );
-  /* background: orangered; */
-  width: 190px;
-  text-align: center;
-}
-#main-content-th > li:not(:first-child) {
-  cursor: pointer;
-  padding-left: 10px;
-  padding-right: 10px;
-}
-#main-content-container {
-  height: 1000px;
-  width: var(--body-width);
-  margin-left: auto;
-  margin-right: auto;
-  /* background: black; */
-}
-#main-content-container > div {
-  display: inline-block;
-  vertical-align: top;
-}
-#main-right-column {
-  margin-top: var(--margin-small);
-  margin-left: var(--margin-small);
-
-  width: 288px;
-}
-/* mid image column */
-.container__mid-images-column {
-  width: 155px;
-  height: 100%;
-  margin-left: var(--margin-small);
-}
-.image-wrapper__mid-images-column--upper {
-  margin-top: var(--margin-small);
-  border-color: black;
-  width: 100%;
-  height: 250px;
-}
-.image-wrapper__mid-images-column--lower {
-  margin-top: var(--margin-xxxsmall);
-  border-color: black;
-  width: 100%;
-  height: 222px;
-}
-.text__mid-images-column {
-  font-size: var(--font-small);
-  margin-top: 16px;
-  color: grey;
-}
+.home {
+  &-search {
+    padding-bottom: @shitHeight;
+  }
+  &-head {
+    width: var(--body-width);
+    transform: translateY(-@shitHeight);    
+    &-list {
+      height: @totalHeight;
+      .shit-block-gradient(#FF9100);
+      line-height: @headHeight;
+      color: white;
+      display: flex;
+      flex-direction: row;
+      // 
+      &-item {
+        font-size: var(--font-large);
+        text-align: center;
+        display: flex;
+        flex-direction: column-reverse;
+        &--vertical-line {
+          font-size: var(--font-xlarge);
+          line-height: 25px;
+        }
+      } // end of home-head-list-item
+      &-item:first-of-type {
+        vertical-align: top;
+        height: @totalHeight;
+        .shit-block-gradient(orangered);
+        width: 190px;
+        text-align: center;        
+      }
+      &-item:not(:first-of-type) {
+        cursor: pointer;
+        margin-left: var(--margin-xsmall);
+        margin-right: var(--margin-xsmall);
+        span {
+          display: flex;
+          justify-content: center;
+        }
+        span:first-of-type {
+          height: @headHeight;
+        }
+        span:last-of-type {
+          height: @shitHeight;
+          line-height: @shitHeight;
+          font-size: var(--font-small);
+        }
+      } // end of home-head-list-item:not(:first-of-type)
+    } // end of home-head-list
+  } // end of home-head
+  &-main {
+    height: 1000px;
+    &-column {
+      display: inline-block;
+      vertical-align: top;
+      overflow: hidden;
+    }
+    &-others { // right column
+      margin-top: var(--margin-small);
+      margin-left: var(--margin-small);
+      width: 292px;
+    }
+    &-advs {
+      width: 155px;
+      margin-top: var(--margin-small);
+      margin-left: var(--margin-small);
+      &-upper {
+        border-color: black;
+        height: 250px;
+      }
+      &-text {
+        font-size: var(--font-small);
+        margin-top: 16px;
+        color: grey;
+      }
+      &-lower {
+        margin-top: var(--margin-xxxsmall);
+        border-color: black;
+        height: 222px;
+      }
+    }
+  } // end of home-main
+} // end of .home
 </style>

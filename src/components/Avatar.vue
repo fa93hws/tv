@@ -1,7 +1,7 @@
 <template>
   <div 
     ref='avatar'
-    class='avatar-container mlra'
+    class='mlra'
   >
     <img
       v-show="isUrlGiven"
